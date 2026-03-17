@@ -1,0 +1,283 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Blog de Beauty Salon: tips de belleza, tendencias, cuidado del cabello, manicure y más. Aprende de nuestras expertas." />
+  <title>Blog | Beauty Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .blog-featured { display:grid; grid-template-columns:1.5fr 1fr; gap:2rem; margin-bottom:3rem; }
+    .blog-featured-main { position:relative; border-radius:var(--radius-md); overflow:hidden; height:420px; cursor:pointer; }
+    .blog-featured-main img { width:100%; height:100%; object-fit:cover; transition:transform var(--transition-slow); }
+    .blog-featured-main:hover img { transform:scale(1.04); }
+    .blog-featured-overlay { position:absolute; inset:0; background:linear-gradient(to top,rgba(44,36,32,0.85) 0%,rgba(44,36,32,0.1) 60%,transparent 100%); display:flex; flex-direction:column; justify-content:flex-end; padding:2rem; }
+    .blog-featured-overlay .blog-category { margin-bottom:0.8rem; }
+    .blog-featured-overlay h2 { color:var(--color-white); font-size:clamp(1.4rem,3vw,2rem); margin-bottom:0.6rem; line-height:1.25; }
+    .blog-featured-overlay p { color:rgba(255,255,255,0.75); font-size:0.9rem; }
+    .blog-featured-sidebar { display:flex; flex-direction:column; gap:1rem; }
+    .blog-sidebar-card { display:grid; grid-template-columns:100px 1fr; gap:1rem; background:var(--color-white); border-radius:var(--radius-sm); overflow:hidden; box-shadow:var(--shadow-sm); cursor:pointer; transition:var(--transition); }
+    .blog-sidebar-card:hover { transform:translateX(4px); box-shadow:var(--shadow-md); }
+    .blog-sidebar-card img { width:100%; height:100%; object-fit:cover; }
+    .blog-sidebar-content { padding:0.8rem 1rem 0.8rem 0; }
+    .blog-sidebar-content .blog-category { margin-bottom:0.4rem; }
+    .blog-sidebar-content h4 { font-size:0.95rem; line-height:1.3; margin-bottom:0.3rem; }
+    .blog-sidebar-content .blog-date { font-size:0.78rem; }
+    @media(max-width:800px){ .blog-featured{grid-template-columns:1fr;} .blog-featured-main{height:300px;} }
+    .newsletter-band { background:linear-gradient(135deg,var(--color-beige),var(--color-blush)); padding:4rem 0; text-align:center; }
+    .newsletter-band h2 { margin-bottom:1rem; }
+    .newsletter-band p { margin-bottom:1.5rem; }
+    .newsletter-form { display:flex; gap:12px; max-width:480px; margin:0 auto; }
+    .newsletter-form input { flex:1; padding:13px 18px; border:1.5px solid var(--color-border); border-radius:var(--radius-xl); font-family:var(--font-body); outline:none; background:var(--color-white); }
+    .newsletter-form input:focus { border-color:var(--color-gold); }
+    @media(max-width:500px){ .newsletter-form{flex-direction:column;} .newsletter-form input,.newsletter-form button{width:100%;} }
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta"><a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+</div>
+
+<section class="page-hero">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="images/pexels-cottonbro-3993449.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.2;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,36,32,0.85),rgba(74,55,40,0.7));"></div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="script-text" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;">Tips & Tendencias</span>
+    <h1>Blog de Belleza</h1>
+    <p>Consejos, tendencias y secretos de belleza de nuestras expertas</p>
+    <nav class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Blog</span></nav>
+  </div>
+</section>
+
+<section class="section bg-cream">
+  <div class="container">
+    <!-- Featured -->
+    <div class="blog-featured reveal">
+      <div class="blog-featured-main">
+        <img src="images/pexels-cottonbro-7449894.jpg" alt="Tendencias 2024" loading="lazy" />
+        <div class="blog-featured-overlay">
+          <span class="blog-category">Tendencias</span>
+          <h2>Los Cortes de Cabello que Dominarán el 2024</h2>
+          <p>Descubre los estilos más hot de la temporada y encuentra el que mejor se adapta a tu tipo de rostro.</p>
+          <div class="blog-meta" style="margin-top:0.8rem;">
+            <span class="blog-date" style="color:rgba(255,255,255,0.55);">15 Marzo, 2024</span>
+            <span style="color:rgba(255,255,255,0.4);">•</span>
+            <span class="blog-date" style="color:rgba(255,255,255,0.55);">5 min lectura</span>
+          </div>
+        </div>
+      </div>
+      <div class="blog-featured-sidebar">
+        <div class="blog-sidebar-card">
+          <img src="images/pexels-n-voitkevich-8468129.jpg" alt="Color" loading="lazy" />
+          <div class="blog-sidebar-content">
+            <span class="blog-category">Color</span>
+            <h4>Balayage vs Mechas: ¿Cuál Elegir?</h4>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> 8 Marzo</span>
+          </div>
+        </div>
+        <div class="blog-sidebar-card">
+          <img src="images/pexels-n-voitkevich-8467975.jpg" alt="Uñas" loading="lazy" />
+          <div class="blog-sidebar-content">
+            <span class="blog-category">Manicure</span>
+            <h4>Nail Art 2024: Diseños que Debes Probar</h4>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> 2 Marzo</span>
+          </div>
+        </div>
+        <div class="blog-sidebar-card">
+          <img src="images/pexels-artempodrez-4783290.jpg" alt="Facial" loading="lazy" />
+          <div class="blog-sidebar-content">
+            <span class="blog-category">Skincare</span>
+            <h4>Rutina Facial Para Piel Seca en Verano</h4>
+            <span class="blog-date"><i class="fa-regular fa-calendar"></i> 25 Feb</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Posts -->
+    <div class="section-header" style="margin-top:3rem;">
+      <h3 style="font-family:var(--font-heading);font-size:1.6rem;">Todos los Artículos</h3>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card reveal delay-1">
+        <div class="blog-card-img-wrap"><img src="images/pexels-cottonbro-3992863.jpg" alt="Corte" class="blog-card-img" loading="lazy" /></div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-category">Cabello</span>
+            <span class="blog-date">10 Mar 2024</span>
+          </div>
+          <h3>Cómo Elegir el Corte Perfecto Según tu Rostro</h3>
+          <p>Cada tipo de rostro tiene cortes que lo favorecen más. Aprende a identificar tu forma de cara y descubre qué estilos te quedarán increíbles.</p>
+          <a href="#" class="read-more">Leer Más <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card reveal delay-2">
+        <div class="blog-card-img-wrap"><img src="images/pexels-n-voitkevich-8468162.jpg" alt="Tratamiento" class="blog-card-img" loading="lazy" /></div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-category">Tratamientos</span>
+            <span class="blog-date">5 Mar 2024</span>
+          </div>
+          <h3>Keratina vs. Botox Capilar: Todo lo que Necesitas Saber</h3>
+          <p>¿Confundida entre keratina y botox capilar? Te explicamos las diferencias, duración y qué resultados puedes esperar de cada tratamiento.</p>
+          <a href="#" class="read-more">Leer Más <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card reveal delay-3">
+        <div class="blog-card-img-wrap"><img src="images/pexels-polina-tankilevitch-3738339.jpg" alt="Productos" class="blog-card-img" loading="lazy" /></div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-category">Cuidado en Casa</span>
+            <span class="blog-date">28 Feb 2024</span>
+          </div>
+          <h3>5 Productos Esenciales para el Cuidado Capilar en Casa</h3>
+          <p>Mantener tu cabello hermoso entre visitas al salón es posible. Te revelamos los 5 productos que no pueden faltar en tu rutina capilar diaria.</p>
+          <a href="#" class="read-more">Leer Más <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card reveal delay-1">
+        <div class="blog-card-img-wrap"><img src="images/pexels-cottonbro-3993312.jpg" alt="Color" class="blog-card-img" loading="lazy" /></div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-category">Color</span>
+            <span class="blog-date">20 Feb 2024</span>
+          </div>
+          <h3>Colores Tendencia 2024: Del Caoba al Rubio Cenizo</h3>
+          <p>Cada temporada trae nuevas tendencias en coloración. Este año los tonos caoba, cobre y rubio cenizo son los protagonistas. ¡Descúbrelos aquí!</p>
+          <a href="#" class="read-more">Leer Más <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card reveal delay-2">
+        <div class="blog-card-img-wrap"><img src="images/pexels-artempodrez-4783290.jpg" alt="Facial" class="blog-card-img" loading="lazy" /></div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-category">Skincare</span>
+            <span class="blog-date">15 Feb 2024</span>
+          </div>
+          <h3>Guía Completa de Skincare para Principiantes</h3>
+          <p>¿Por dónde empezar con el cuidado de la piel? Te damos una guía paso a paso para construir una rutina skincare básica y efectiva según tu tipo de piel.</p>
+          <a href="#" class="read-more">Leer Más <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="blog-card reveal delay-3">
+        <div class="blog-card-img-wrap"><img src="images/pexels-n-voitkevich-8468134.jpg" alt="Uñas" class="blog-card-img" loading="lazy" /></div>
+        <div class="blog-card-body">
+          <div class="blog-meta">
+            <span class="blog-category">Manicure</span>
+            <span class="blog-date">10 Feb 2024</span>
+          </div>
+          <h3>Cómo Hacer Durar tu Manicure por Más Tiempo</h3>
+          <p>¿Tu esmalte se rompe rápido? Aprende los secretos de las profesionales para que tu manicure dure hasta 3 semanas sin chipeos ni roturas.</p>
+          <a href="#" class="read-more">Leer Más <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<div class="newsletter-band">
+  <div class="container reveal">
+    <span class="script-text" style="font-size:1.3rem;display:block;margin-bottom:0.5rem;">Únete a Nuestra Comunidad</span>
+    <h2>Recibe Tips de Belleza</h2>
+    <p>Suscríbete y recibe semanalmente consejos de belleza, tendencias y promociones exclusivas.</p>
+    <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+      <input type="email" placeholder="tu@email.com" required aria-label="Email" />
+      <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Suscribirme</button>
+    </form>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot icon"></i><span>Tegucigalpa, Honduras</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone icon"></i><a href="tel:+50495307141">+504 9530-7141</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp icon"></i><a href="https://wa.me/50495307141">WhatsApp</a></div>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item"><span class="day">Lunes – Viernes</span><span>8:00 – 19:00</span></div>
+          <div class="footer-hours-item"><span class="day">Sábado</span><span>8:00 – 18:00</span></div>
+          <div class="footer-hours-item"><span class="day">Domingo</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Beauty Salon. Todos los derechos reservados.</p></div>
+  </div>
+</footer>
+
+
+
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+function handleNewsletter(e) {
+  e.preventDefault();
+  showToast('¡Gracias por suscribirte! Pronto recibirás nuestros tips. 💕', 'success');
+  e.target.reset();
+}
+</script>
+</body>
+</html>

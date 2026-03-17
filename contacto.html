@@ -1,0 +1,519 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contacta a Beauty Salon y agenda tu cita. Formulario de citas online con confirmación por WhatsApp. Tegucigalpa, Honduras." />
+  <title>Contacto & Citas | Beauty Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .form-submit-btn {
+      width: 100%;
+      justify-content: center;
+      padding: 16px;
+      font-size: 1rem;
+      gap: 10px;
+    }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .hour-item {
+      display: flex;
+      flex-direction: column;
+      font-size: 0.82rem;
+    }
+    .hour-item .day-label {
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .hour-item .hour-val {
+      color: var(--color-gold);
+      font-size: 0.88rem;
+    }
+    .map-embed {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 2rem;
+      height: 300px;
+      background: var(--color-beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--color-border);
+    }
+    .form-success-state {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .form-success-state .success-icon {
+      font-size: 3rem;
+      color: #25D366;
+      margin-bottom: 1rem;
+    }
+    /* Time slots */
+    .time-slots {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 0.5rem;
+    }
+    .time-slot {
+      padding: 8px;
+      border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--color-beige);
+      color: var(--color-text);
+      font-family: var(--font-body);
+    }
+    .time-slot:hover, .time-slot.selected {
+      border-color: var(--color-gold);
+      background: var(--color-gold);
+      color: var(--color-white);
+    }
+    @media(max-width:500px) { .time-slots { grid-template-columns: repeat(3, 1fr); } }
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+      <li><a href="blog.html">Blog</a></li><li><a href="contacto.html" class="active">Contacto</a></li>
+    </ul>
+    <div class="nav-cta"><a href="#appointment-form" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta"><a href="#appointment-form" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+</div>
+
+<section class="page-hero">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="images/pexels-cottonbro-7428096.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.2;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,36,32,0.88),rgba(74,55,40,0.75));"></div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="script-text" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;">Estamos para Servirte</span>
+    <h1>Contacto & Citas</h1>
+    <p>Agenda tu visita en segundos y recibe confirmación por WhatsApp</p>
+    <nav class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Contacto</span></nav>
+  </div>
+</section>
+
+<!-- CONTACT + APPOINTMENT SECTION -->
+<section class="section bg-cream" id="appointment-form">
+  <div class="container">
+    <div class="contact-split">
+
+      <!-- Info Card -->
+      <div class="contact-info-card reveal-left">
+        <h3>Encuéntranos</h3>
+        <p>Visítanos o contáctanos por cualquiera de estos medios. ¡Estamos felices de atenderte!</p>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-detail-text">
+            <h4>Dirección</h4>
+            <p>Col. La Granja, Block 5, Casa #12<br>Tegucigalpa, Honduras</p>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-detail-text">
+            <h4>Teléfono</h4>
+            <a href="tel:+50495307141">+504 9530-7141</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <div class="contact-detail-text">
+            <h4>WhatsApp</h4>
+            <a href="https://wa.me/50495307141" target="_blank">Escríbenos ahora</a>
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="contact-detail-text">
+            <h4>Email</h4>
+            <a href="mailto:info@beautysalon.hn">info@beautysalon.hn</a>
+          </div>
+        </div>
+
+        <div style="border-top:1px solid rgba(201,169,110,0.2);padding-top:1.5rem;margin-top:0.5rem;">
+          <h4 style="color:var(--color-gold-light);font-family:var(--font-heading);margin-bottom:1rem;">Horarios de Atención</h4>
+          <div class="hours-grid">
+            <div class="hour-item"><span class="day-label">Lun – Vie</span><span class="hour-val">8:00 AM – 7:00 PM</span></div>
+            <div class="hour-item"><span class="day-label">Sábado</span><span class="hour-val">8:00 AM – 6:00 PM</span></div>
+            <div class="hour-item"><span class="day-label">Domingo</span><span class="hour-val">Cerrado</span></div>
+            <div class="hour-item"><span class="day-label">Feriado</span><span class="hour-val">Consultar</span></div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;">
+          <button onclick="openWhatsApp()" class="btn btn-whatsapp" style="width:100%;justify-content:center;">
+            <i class="fa-brands fa-whatsapp"></i> Chat Directo por WhatsApp
+          </button>
+        </div>
+
+        <!-- Social -->
+        <div style="margin-top:1.5rem;display:flex;gap:10px;">
+          <a href="#" style="width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);transition:var(--transition);" onmouseover="this.style.borderColor='var(--color-gold)';this.style.color='var(--color-gold)';" onmouseout="this.style.borderColor='rgba(201,169,110,0.3)';this.style.color='rgba(255,255,255,0.6)';">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" style="width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);transition:var(--transition);" onmouseover="this.style.borderColor='var(--color-gold)';this.style.color='var(--color-gold)';" onmouseout="this.style.borderColor='rgba(201,169,110,0.3)';this.style.color='rgba(255,255,255,0.6)';">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" style="width:38px;height:38px;border-radius:50%;border:1.5px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.6);transition:var(--transition);" onmouseover="this.style.borderColor='var(--color-gold)';this.style.color='var(--color-gold)';" onmouseout="this.style.borderColor='rgba(201,169,110,0.3)';this.style.color='rgba(255,255,255,0.6)';">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Appointment Form -->
+      <div class="appointment-form-wrap reveal-right">
+        <!-- Form state -->
+        <div id="form-content">
+          <h3>Agendar Mi Cita</h3>
+          <p>Completa el formulario y enviaremos tu solicitud por WhatsApp. El salón confirmará tu cita o sugerirá un horario alternativo.</p>
+
+          <form id="appointment-form-el" novalidate>
+            <div class="form-row">
+              <!-- Nombre -->
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" class="form-control" placeholder="María" autocomplete="given-name" />
+                <span class="form-error" id="nombre-error">El nombre es requerido</span>
+              </div>
+              <!-- Apellido -->
+              <div class="form-group">
+                <label for="apellido">Apellido *</label>
+                <input type="text" id="apellido" class="form-control" placeholder="García" autocomplete="family-name" />
+                <span class="form-error" id="apellido-error">El apellido es requerido</span>
+              </div>
+            </div>
+
+            <!-- Teléfono -->
+            <div class="form-group">
+              <label for="telefono">Teléfono *</label>
+              <input type="tel" id="telefono" class="form-control" placeholder="9999-9999" autocomplete="tel" />
+              <span class="form-error" id="telefono-error">Ingresa un teléfono válido (ej: 9999-9999)</span>
+            </div>
+
+            <!-- Servicio -->
+            <div class="form-group">
+              <label for="servicio">Servicio *</label>
+              <select id="servicio" class="form-control">
+                <option value="">— Selecciona un servicio —</option>
+                <option>Corte de Cabello</option>
+                <option>Corte con Estilo (Brushing/Rizado)</option>
+                <option>Tinte Completo</option>
+                <option>Mechas / Balayage</option>
+                <option>Keratina Alisante</option>
+                <option>Hidratación Profunda</option>
+                <option>Manicure Clásica</option>
+                <option>Manicure Gel</option>
+                <option>Manicure + Diseño</option>
+                <option>Uñas Acrílicas</option>
+                <option>Pedicure Clásica</option>
+                <option>Pedicure Spa</option>
+                <option>Limpieza Facial</option>
+                <option>Facial Hidratante</option>
+                <option>Paquete Básico</option>
+                <option>Paquete Glamour</option>
+                <option>Paquete Novia</option>
+                <option>Otro (especificar en notas)</option>
+              </select>
+              <span class="form-error" id="servicio-error">Selecciona un servicio</span>
+            </div>
+
+            <!-- Fecha -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fecha">Fecha deseada *</label>
+                <input type="date" id="fecha" class="form-control" />
+                <span class="form-error" id="fecha-error">Selecciona una fecha válida</span>
+              </div>
+              <!-- Hora -->
+              <div class="form-group">
+                <label for="hora">Hora deseada *</label>
+                <select id="hora" class="form-control">
+                  <option value="">— Selecciona hora —</option>
+                  <option>8:00 AM</option>
+                  <option>9:00 AM</option>
+                  <option>10:00 AM</option>
+                  <option>11:00 AM</option>
+                  <option>12:00 PM</option>
+                  <option>1:00 PM</option>
+                  <option>2:00 PM</option>
+                  <option>3:00 PM</option>
+                  <option>4:00 PM</option>
+                  <option>5:00 PM</option>
+                  <option>6:00 PM</option>
+                </select>
+                <span class="form-error" id="hora-error">Selecciona una hora</span>
+              </div>
+            </div>
+
+            <!-- Notas -->
+            <div class="form-group">
+              <label for="notas">Notas adicionales <span style="font-weight:400;font-size:0.75rem;color:var(--color-text-light);">(opcional)</span></label>
+              <textarea id="notas" class="form-control" rows="3" placeholder="Cuéntanos más sobre lo que deseas..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-whatsapp form-submit-btn">
+              <i class="fa-brands fa-whatsapp"></i>
+              Enviar Solicitud por WhatsApp
+            </button>
+
+            <p style="font-size:0.78rem;color:var(--color-text-light);text-align:center;margin-top:1rem;">
+              <i class="fa-solid fa-lock" style="color:var(--color-gold);"></i>
+              Tu información es privada y solo se usará para confirmar tu cita.
+            </p>
+          </form>
+        </div>
+
+        <!-- Success state (hidden initially) -->
+        <div class="form-success-state" id="form-success">
+          <div class="success-icon"><i class="fa-brands fa-whatsapp"></i></div>
+          <h3>¡Solicitud Enviada!</h3>
+          <p>Tu solicitud fue enviada por WhatsApp. El salón te contactará para confirmar tu cita. ⏱️ Tiempo de respuesta: menos de 1 hora.</p>
+          <div style="margin-top:1.5rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button onclick="resetForm()" class="btn btn-outline-dark">Agendar Otra Cita</button>
+            <a href="index.html" class="btn btn-primary">Ir al Inicio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK CONTACT BAR -->
+<section class="stats-bar" style="padding:2.5rem 0;">
+  <div class="container">
+    <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);gap:1rem;">
+      <div style="text-align:center;" class="reveal">
+        <a href="tel:+50495307141" style="display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;">
+          <i class="fa-solid fa-phone" style="font-size:1.8rem;color:var(--color-gold);"></i>
+          <span style="color:rgba(255,255,255,0.85);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;">Llamar ahora</span>
+          <span style="color:var(--color-gold);font-family:var(--font-heading);font-size:1.1rem;">+504 9530-7141</span>
+        </a>
+      </div>
+      <div style="text-align:center;" class="reveal delay-1">
+        <button onclick="openWhatsApp('Hola, quiero información sobre sus servicios 💅')" style="display:flex;flex-direction:column;align-items:center;gap:8px;background:none;border:none;cursor:pointer;width:100%;">
+          <i class="fa-brands fa-whatsapp" style="font-size:1.8rem;color:#25D366;"></i>
+          <span style="color:rgba(255,255,255,0.85);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;">WhatsApp</span>
+          <span style="color:#25D366;font-family:var(--font-heading);font-size:1.1rem;">Mensaje directo</span>
+        </button>
+      </div>
+      <div style="text-align:center;" class="reveal delay-2">
+        <a href="mailto:info@beautysalon.hn" style="display:flex;flex-direction:column;align-items:center;gap:8px;text-decoration:none;">
+          <i class="fa-solid fa-envelope" style="font-size:1.8rem;color:var(--color-gold);"></i>
+          <span style="color:rgba(255,255,255,0.85);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.1em;">Email</span>
+          <span style="color:var(--color-gold);font-family:var(--font-heading);font-size:1rem;">info@beautysalon.hn</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot icon"></i><span>Col. La Granja Block 5<br>Tegucigalpa, Honduras</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone icon"></i><a href="tel:+50495307141">+504 9530-7141</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp icon"></i><a href="https://wa.me/50495307141">WhatsApp directo</a></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-envelope icon"></i><a href="mailto:info@beautysalon.hn">info@beautysalon.hn</a></div>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item"><span class="day">Lunes – Viernes</span><span>8:00 – 19:00</span></div>
+          <div class="footer-hours-item"><span class="day">Sábado</span><span>8:00 – 18:00</span></div>
+          <div class="footer-hours-item"><span class="day">Domingo</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Beauty Salon. Todos los derechos reservados.</p></div>
+  </div>
+</footer>
+
+
+
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+/* ===== APPOINTMENT FORM VALIDATION & WHATSAPP ===== */
+
+// Set min date to today
+const dateInput = document.getElementById('fecha');
+const today = new Date();
+today.setDate(today.getDate() + 1); // Min: tomorrow
+const dd = String(today.getDate()).padStart(2,'0');
+const mm = String(today.getMonth()+1).padStart(2,'0');
+const yyyy = today.getFullYear();
+dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+function showError(fieldId, errorId) {
+  const field = document.getElementById(fieldId);
+  const err   = document.getElementById(errorId);
+  field.classList.add('error');
+  err.classList.add('show');
+}
+
+function clearError(fieldId, errorId) {
+  const field = document.getElementById(fieldId);
+  const err   = document.getElementById(errorId);
+  field.classList.remove('error');
+  err.classList.remove('show');
+}
+
+function validatePhone(phone) {
+  // Accepts formats like 9999-9999, 99999999, +504 9999-9999
+  return /^[\+\d][\d\s\-]{6,14}$/.test(phone.trim());
+}
+
+function formatDate(dateStr) {
+  if (!dateStr) return '';
+  const [y, m, d] = dateStr.split('-');
+  const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+  return `${parseInt(d)} de ${months[parseInt(m)-1]} de ${y}`;
+}
+
+document.getElementById('appointment-form-el').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+
+  const nombre   = document.getElementById('nombre').value.trim();
+  const apellido = document.getElementById('apellido').value.trim();
+  const telefono = document.getElementById('telefono').value.trim();
+  const servicio = document.getElementById('servicio').value;
+  const fecha    = document.getElementById('fecha').value;
+  const hora     = document.getElementById('hora').value;
+  const notas    = document.getElementById('notas').value.trim();
+
+  // Clear all errors first
+  ['nombre','apellido','telefono','servicio','fecha','hora'].forEach(id => {
+    clearError(id, id+'-error');
+  });
+
+  // Validate
+  if (!nombre)               { showError('nombre', 'nombre-error');     valid = false; }
+  if (!apellido)             { showError('apellido', 'apellido-error'); valid = false; }
+  if (!validatePhone(telefono)) { showError('telefono', 'telefono-error'); valid = false; }
+  if (!servicio)             { showError('servicio', 'servicio-error'); valid = false; }
+  if (!fecha)                { showError('fecha', 'fecha-error');       valid = false; }
+  if (!hora)                 { showError('hora', 'hora-error');         valid = false; }
+
+  // Check date is not Sunday
+  if (fecha) {
+    const selectedDate = new Date(fecha + 'T12:00:00');
+    if (selectedDate.getDay() === 0) {
+      showError('fecha', 'fecha-error');
+      document.getElementById('fecha-error').textContent = 'Los domingos estamos cerradas. Elige otro día.';
+      valid = false;
+    }
+  }
+
+  if (!valid) {
+    showToast('Por favor completa todos los campos correctamente.', 'error');
+    return;
+  }
+
+  // Build WhatsApp message
+  const message = `Hola, tengo una nueva solicitud de cita:
+
+👤 Nombre: ${nombre} ${apellido}
+📞 Teléfono: ${telefono}
+💅 Servicio: ${servicio}
+📅 Fecha: ${formatDate(fecha)}
+🕐 Hora: ${hora}${notas ? `\n📝 Notas: ${notas}` : ''}
+
+Por favor confirma esta cita o sugiere otro horario disponible. ¡Gracias! 🌸`;
+
+  sendAppointmentWhatsApp({ nombre, apellido, telefono, servicio, fecha: formatDate(fecha), hora });
+
+  // Show success state
+  document.getElementById('form-content').style.display = 'none';
+  document.getElementById('form-success').style.display = 'block';
+});
+
+function resetForm() {
+  document.getElementById('appointment-form-el').reset();
+  document.getElementById('form-content').style.display = 'block';
+  document.getElementById('form-success').style.display = 'none';
+  ['nombre','apellido','telefono','servicio','fecha','hora'].forEach(id => {
+    clearError(id, id+'-error');
+  });
+  document.getElementById('fecha-error').textContent = 'Selecciona una fecha válida';
+}
+
+// Live validation for phone
+document.getElementById('telefono').addEventListener('input', function() {
+  if (validatePhone(this.value.trim())) clearError('telefono','telefono-error');
+});
+</script>
+</body>
+</html>
