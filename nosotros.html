@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Conoce la historia, misión y equipo de Beauty Salon. Más de 10 años cuidando la belleza de nuestras clientas en Honduras." />
+  <title>Nosotros | Beauty Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .timeline { position: relative; padding: 2rem 0; }
+    .timeline::before { content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,transparent,var(--color-gold),transparent); transform:translateX(-50%); }
+    .timeline-item { display:grid; grid-template-columns:1fr 1fr; gap:4rem; margin-bottom:3rem; align-items:center; }
+    .timeline-item:nth-child(even) .timeline-content { order: -1; text-align:right; }
+    .timeline-item:nth-child(even) .timeline-img    { order: 1; }
+    .timeline-dot { position:absolute; left:50%; transform:translateX(-50%); width:16px; height:16px; border-radius:50%; background:var(--color-gold); border:3px solid var(--color-white); box-shadow:0 0 0 4px rgba(201,169,110,0.2); }
+    .timeline-content { position:relative; background:var(--color-white); border-radius:var(--radius-md); padding:1.8rem; box-shadow:var(--shadow-sm); }
+    .timeline-year { font-family:var(--font-script); font-size:1.6rem; color:var(--color-gold); display:block; margin-bottom:0.4rem; }
+    .timeline-content h3 { margin-bottom:0.5rem; }
+    .timeline-img { border-radius:var(--radius-md); overflow:hidden; height:220px; }
+    .timeline-img img { width:100%; height:100%; object-fit:cover; }
+    @media(max-width:700px){
+      .timeline::before{left:20px;}
+      .timeline-item{grid-template-columns:1fr; gap:1.2rem;}
+      .timeline-item:nth-child(even) .timeline-content{order:1;text-align:left;}
+      .timeline-item:nth-child(even) .timeline-img{order:-1;}
+      .timeline-dot{left:20px;}
+    }
+    .values-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:2rem; }
+    .value-card { background:var(--color-white); border-radius:var(--radius-md); padding:2rem; text-align:center; box-shadow:var(--shadow-sm); border-top:3px solid var(--color-gold); transition:var(--transition); }
+    .value-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+    .value-icon { width:64px; height:64px; border-radius:50%; background:var(--color-beige); display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; font-size:1.6rem; color:var(--color-gold); }
+    .value-card h3{font-size:1.1rem;margin-bottom:0.5rem;}
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="nosotros.html" class="active">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="productos.html">Productos</a></li>
+      <li><a href="galeria.html">Galería</a></li>
+      <li><a href="precios.html">Precios</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta">
+    <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="background-image:none;">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="images/pexels-cottonbro-7440059.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.2;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,36,32,0.85),rgba(74,55,40,0.7));"></div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="script-text" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;">Nuestra Historia</span>
+    <h1>Sobre Nosotros</h1>
+    <p>Conócenos y descubre el corazón detrás de Beauty Salon</p>
+    <nav class="breadcrumb">
+      <a href="index.html">Inicio</a>
+      <span>/</span>
+      <span>Nosotros</span>
+    </nav>
+  </div>
+</section>
+
+<!-- ABOUT MAIN -->
+<section class="section bg-cream">
+  <div class="container">
+    <div class="about-split">
+      <div class="about-img-stack reveal-left">
+        <img src="images/pexels-artempodrez-4783340.jpg" alt="Nuestro Salón" class="about-img-main" />
+        <img src="images/pexels-cottonbro-3993312.jpg" alt="Trabajo" class="about-img-accent" />
+        <div class="about-experience-badge">
+          <span class="num">10+</span>
+          <span class="txt">Años con<br>Nosotras</span>
+        </div>
+      </div>
+      <div class="about-content reveal-right">
+        <span class="script-text">Nuestra Misión</span>
+        <h2>Belleza que Transforma, Confianza que Inspira</h2>
+        <div class="divider"><div class="divider-diamond"></div></div>
+        <p>Beauty Salon nació de una pasión genuina por hacer que cada mujer se sienta extraordinaria. Fundado en 2014 por un grupo de especialistas certificadas, hemos crecido hasta convertirnos en el destino de belleza de confianza en Honduras.</p>
+        <p>Combinamos técnicas de vanguardia con productos premium y un ambiente cálido para ofrecerte una experiencia única. Creemos que la belleza exterior debe reflejar la belleza interior, y nuestro trabajo es revelarla.</p>
+        <p>Cada visita es una oportunidad para que te sientas especial, bella y confiada. Tu satisfacción es nuestra mayor recompensa.</p>
+        <div style="margin-top:2rem;display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="servicios.html" class="btn btn-primary"><i class="fa-solid fa-sparkles"></i> Nuestros Servicios</a>
+          <a href="contacto.html" class="btn btn-outline-dark">Agenda Tu Cita</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><span class="stat-number" data-count="2000" data-suffix="+">0</span><span class="stat-label">Clientas Atendidas</span></div>
+      <div class="stat-item reveal delay-1"><span class="stat-number" data-count="10" data-suffix="+">0</span><span class="stat-label">Años de Experiencia</span></div>
+      <div class="stat-item reveal delay-2"><span class="stat-number" data-count="6" data-suffix="">0</span><span class="stat-label">Especialistas</span></div>
+      <div class="stat-item reveal delay-3"><span class="stat-number" data-count="98" data-suffix="%">0</span><span class="stat-label">Satisfacción</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- VALUES -->
+<section class="section bg-beige">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="script-text">Lo que nos define</span>
+      <h2>Nuestros Valores</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal delay-1">
+        <div class="value-icon"><i class="fa-solid fa-award"></i></div>
+        <h3>Excelencia</h3>
+        <p>Buscamos la perfección en cada servicio. Nuestros estándares de calidad no tienen compromisos.</p>
+      </div>
+      <div class="value-card reveal delay-2">
+        <div class="value-icon"><i class="fa-solid fa-heart"></i></div>
+        <h3>Pasión</h3>
+        <p>Amamos lo que hacemos. Cada clienta recibe nuestro máximo cuidado y dedicación personal.</p>
+      </div>
+      <div class="value-card reveal delay-3">
+        <div class="value-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Productos Premium</h3>
+        <p>Solo utilizamos marcas reconocidas y productos de alta calidad, seguros para ti y el planeta.</p>
+      </div>
+      <div class="value-card reveal delay-4">
+        <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Confianza</h3>
+        <p>Higiene impecable, transparencia en precios y un trato respetuoso en todo momento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="script-text">Cómo llegamos aquí</span>
+      <h2>Nuestra Historia</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+    </div>
+    <div class="timeline" style="position:relative;">
+      <div class="timeline-item">
+        <div class="timeline-content reveal-left">
+          <span class="timeline-year">2014</span>
+          <h3>Los Comienzos</h3>
+          <p>Apertura del primer local con un equipo de 2 especialistas y grandes sueños por delante.</p>
+        </div>
+        <div class="timeline-img reveal-right">
+          <img src="images/pexels-cottonbro-7428096.jpg" alt="2014" loading="lazy" />
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content reveal-right">
+          <span class="timeline-year">2017</span>
+          <h3>Expansión del Equipo</h3>
+          <p>Incorporamos especialistas certificadas y ampliamos nuestro catálogo de servicios.</p>
+        </div>
+        <div class="timeline-img reveal-left">
+          <img src="images/pexels-cottonbro-7449894.jpg" alt="2017" loading="lazy" />
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content reveal-left">
+          <span class="timeline-year">2020</span>
+          <h3>Remodelación Premium</h3>
+          <p>Renovamos totalmente el espacio para crear el ambiente spa-lujoso que nos caracteriza.</p>
+        </div>
+        <div class="timeline-img reveal-right">
+          <img src="images/pexels-gabby-k-6621472.jpg" alt="2020" loading="lazy" />
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content reveal-right">
+          <span class="timeline-year">2024</span>
+          <h3>Hoy: Líderes en Belleza</h3>
+          <p>Más de 2,000 clientas atendidas, 6 especialistas y el reconocimiento de ser el mejor salón de la ciudad.</p>
+        </div>
+        <div class="timeline-img reveal-left">
+          <img src="images/pexels-artempodrez-4783340.jpg" alt="2024" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="section bg-gold-pattern">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="script-text">Las que te cuidan</span>
+      <h2>Nuestro Equipo</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+      <p>Profesionales apasionadas, certificadas y dedicadas a tu bienestar.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal delay-1">
+        <img src="images/pexels-laryssa-suaid-798122-1667071.jpg" alt="Laura González" class="team-avatar" loading="lazy" />
+        <h3>Laura González</h3>
+        <p class="role">Directora & Especialista en Color</p>
+      </div>
+      <div class="team-card reveal delay-2">
+        <img src="images/pexels-kampus-8834086.jpg" alt="Sofía Ramírez" class="team-avatar" loading="lazy" />
+        <h3>Sofía Ramírez</h3>
+        <p class="role">Especialista en Manicure & Pedicure</p>
+      </div>
+      <div class="team-card reveal delay-3">
+        <img src="images/pexels-kampus-8834087.jpg" alt="Carolina López" class="team-avatar" loading="lazy" />
+        <h3>Carolina López</h3>
+        <p class="role">Esteticista & Spa Facial</p>
+      </div>
+      <div class="team-card reveal delay-4">
+        <img src="images/pexels-rdne-7755534.jpg" alt="Valentina Cruz" class="team-avatar" loading="lazy" />
+        <h3>Valentina Cruz</h3>
+        <p class="role">Estilista & Tratamientos Capilares</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <h2 style="color:var(--color-white);">¿Lista para Vivir la Experiencia?</h2>
+      <p style="color:rgba(255,255,255,0.65);margin-bottom:2rem;">Agenda tu cita ahora y déjate consentir por nuestras expertas.</p>
+      <div class="cta-band-btns">
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a>
+        <button onclick="openWhatsApp()" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Contactar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot icon"></i><span>Tegucigalpa, Honduras<br>Col. La Granja, Block 5</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone icon"></i><a href="tel:+50495307141">+504 9530-7141</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp icon"></i><a href="https://wa.me/50495307141">WhatsApp directo</a></div>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item"><span class="day">Lunes – Viernes</span><span>8:00 – 19:00</span></div>
+          <div class="footer-hours-item"><span class="day">Sábado</span><span>8:00 – 18:00</span></div>
+          <div class="footer-hours-item"><span class="day">Domingo</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Beauty Salon. Todos los derechos reservados.</p>
+      <p>Diseñado con <i class="fa-solid fa-heart" style="color:var(--color-rose-deep)"></i> para ti</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>

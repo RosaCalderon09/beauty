@@ -1,0 +1,304 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Catálogo de productos de Beauty Salon. Shampoos, acondicionadores, mascarillas, esmaltes y más. Reserva por WhatsApp." />
+  <title>Productos | Beauty Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Filter tabs */
+    .filter-tabs { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:3rem; }
+    .filter-tab { padding:9px 22px; border-radius:var(--radius-xl); font-size:0.85rem; font-weight:500; letter-spacing:0.06em; cursor:pointer; transition:var(--transition); border:1.5px solid var(--color-border); background:var(--color-white); color:var(--color-text-light); }
+    .filter-tab.active, .filter-tab:hover { background:var(--color-gold); color:var(--color-white); border-color:var(--color-gold); box-shadow:var(--shadow-gold); }
+
+    /* Modal product */
+    .product-modal-img { width:100%; height:220px; object-fit:cover; border-radius:var(--radius-sm); margin-bottom:1.2rem; }
+    .product-modal h3  { margin-bottom:0.4rem; }
+    .product-modal-price { font-family:var(--font-heading); font-size:1.8rem; color:var(--color-gold-dark); font-weight:700; margin-bottom:1rem; }
+    .product-modal p   { font-size:0.9rem; margin-bottom:1.5rem; }
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html" class="active">Productos</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+      <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta"><a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+</div>
+
+<section class="page-hero">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="images/pexels-polina-tankilevitch-3738339.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.25;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,36,32,0.85),rgba(74,55,40,0.7));"></div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="script-text" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;">Nuestra Tienda</span>
+    <h1>Catálogo de Productos</h1>
+    <p>Productos premium para cuidar tu belleza en casa</p>
+    <nav class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Productos</span></nav>
+  </div>
+</section>
+
+<section class="section bg-cream">
+  <div class="container">
+    <!-- Filters -->
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-filter="all">Todos</button>
+      <button class="filter-tab" data-filter="cabello">Cabello</button>
+      <button class="filter-tab" data-filter="unas">Uñas</button>
+      <button class="filter-tab" data-filter="facial">Facial</button>
+      <button class="filter-tab" data-filter="cuerpo">Cuerpo</button>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="products-grid">
+      <!-- Products injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="product-modal-overlay">
+  <div class="modal product-modal" id="product-modal">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <img src="" alt="" class="product-modal-img" id="modal-img" />
+    <p class="product-card-category" id="modal-category"></p>
+    <h3 id="modal-name"></h3>
+    <p id="modal-desc"></p>
+    <div class="product-modal-price" id="modal-price"></div>
+    <form id="reserve-form" style="margin-top:1rem;">
+      <div class="form-group">
+        <label for="client-name">Tu nombre *</label>
+        <input type="text" id="client-name" class="form-control" placeholder="Ej: María García" required />
+      </div>
+      <div class="form-group">
+        <label for="client-phone">Tu teléfono *</label>
+        <input type="tel" id="client-phone" class="form-control" placeholder="Ej: 9999-9999" required />
+      </div>
+      <button type="submit" class="btn btn-whatsapp" style="width:100%;justify-content:center;">
+        <i class="fa-brands fa-whatsapp"></i> Reservar por WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <h2 style="color:var(--color-white);">¿Prefieres Probarlos en Salón?</h2>
+      <p style="color:rgba(255,255,255,0.65);margin-bottom:2rem;">Agenda una cita y nuestras expertas te asesorarán sobre los mejores productos para ti.</p>
+      <div class="cta-band-btns">
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a>
+        <button onclick="openWhatsApp()" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot icon"></i><span>Tegucigalpa, Honduras</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone icon"></i><a href="tel:+50495307141">+504 9530-7141</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp icon"></i><a href="https://wa.me/50495307141">WhatsApp</a></div>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item"><span class="day">Lunes – Viernes</span><span>8:00 – 19:00</span></div>
+          <div class="footer-hours-item"><span class="day">Sábado</span><span>8:00 – 18:00</span></div>
+          <div class="footer-hours-item"><span class="day">Domingo</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Beauty Salon. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+/**
+ * PRODUCTS DATA & CATALOG LOGIC
+ */
+const PRODUCTS = [
+  { id:1, name:'Shampoo Hidratante Premium', category:'cabello', price:'L.180', image:'images/pexels-polina-tankilevitch-3738339.jpg', desc:'Shampoo de hidratación profunda con aceite de argán y queratina. Ideal para cabellos secos y dañados. Restaura el brillo y suavidad desde la primera aplicación.', badge:'Más Vendido' },
+  { id:2, name:'Mascarilla de Keratina Intensiva', category:'cabello', price:'L.350', image:'images/pexels-helloimfrecelynne-10427811.jpg', desc:'Mascarilla reconstructiva con keratina líquida y proteínas de seda. Repara el daño, sella las cutículas y deja un cabello liso, brillante y manejable por semanas.', badge:'Nuevo' },
+  { id:3, name:'Serum Capilar Anti-Frizz', category:'cabello', price:'L.220', image:'images/pexels-helloimfrecelynne-10427813.jpg', desc:'Serum ultraligero con aceite de argán marroquí que elimina el frizz al instante. Protege del calor hasta 230°C y proporciona brillo espejo sin encerrar el cabello.', badge:null },
+  { id:4, name:'Esmalte Semipermanente Gel', category:'unas', price:'L.95', image:'images/pexels-n-voitkevich-8467975.jpg', desc:'Esmalte en gel de larga duración (hasta 3 semanas). Colores vibrantes, secado rápido bajo UV/LED, sin chipeo. Colección de 60 tonos disponibles.', badge:'Popular' },
+  { id:5, name:'Kit de Manicure Profesional', category:'unas', price:'L.450', image:'images/pexels-n-voitkevich-8468134.jpg', desc:'Set completo con lima profesional, empujacutículas de titanio, cortador de uñas, pulidor y cepillo. Acero inoxidable de alta calidad, estuche incluido.', badge:null },
+  { id:6, name:'Top Coat Efecto Espejo', category:'unas', price:'L.120', image:'images/pexels-n-voitkevich-8468162.jpg', desc:'Top coat de ultra-brillo que convierte cualquier esmalte en un acabado espejo de salón. No amarilla, protege el color y extiende la duración.', badge:'Nuevo' },
+  { id:7, name:'Crema Facial Hidratante SPF 30', category:'facial', price:'L.280', image:'images/pexels-artempodrez-4783290.jpg', desc:'Crema facial con ácido hialurónico, vitamina C y protección solar SPF 30. Hidrata profundamente, unifica el tono y protege de los rayos UV todo el día.', badge:'Recomendado' },
+  { id:8, name:'Sérum Vitamina C Antioxidante', category:'facial', price:'L.320', image:'images/pexels-madalina-enache-1540051428-28752007.jpg', desc:'Sérum con vitamina C al 15%, ácido hialurónico y extracto de rosa mosqueta. Ilumina, unifica y rejuvenece la piel con uso diario.', badge:null },
+  { id:9, name:'Mascarilla Purificante de Arcilla', category:'facial', price:'L.195', image:'images/pexels-gaeahealthco-30595022.jpg', desc:'Mascarilla de arcilla verde y carbón activado que limpia profundamente los poros, elimina impurezas y controla el exceso de grasa sin resecar la piel.', badge:null },
+  { id:10, name:'Aceite Corporal de Rosa Mosqueta', category:'cuerpo', price:'L.240', image:'images/pexels-secret-spells-2150924742-31401738.jpg', desc:'Aceite 100% puro de rosa mosqueta prensado en frío. Regenera la piel, reduce cicatrices y manchas, aporta elasticidad y una piel tersa y luminosa.', badge:'Natural' },
+  { id:11, name:'Exfoliante Corporal de Azúcar y Café', category:'cuerpo', price:'L.165', image:'images/pexels-ela-de-pure-1402904686-33146411.jpg', desc:'Exfoliante artesanal con azúcar morena, café y aceite de coco. Elimina células muertas, activa la circulación, hidrata y deja la piel suave como seda.', badge:'Artesanal' },
+  { id:12, name:'Loción Corporal Nutritiva 24h', category:'cuerpo', price:'L.190', image:'images/pexels-dogu-tuncer-339534179-19717730.jpg', desc:'Loción de absorción rápida con manteca de karité, aloe vera y vitamina E. Hidratación garantizada por 24 horas, aroma floral delicado.', badge:null },
+];
+
+let activeFilter = 'all';
+let selectedProduct = null;
+
+const grid = document.getElementById('products-grid');
+const modalOverlay = document.getElementById('product-modal-overlay');
+const modalClose = document.getElementById('modal-close');
+
+function renderProducts(filter) {
+  const filtered = filter === 'all' ? PRODUCTS : PRODUCTS.filter(p => p.category === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card reveal" data-category="${p.category}">
+      <div class="product-card-img-wrap">
+        <img src="${p.image}" alt="${p.name}" class="product-card-img" loading="lazy" />
+        <div class="product-card-overlay"></div>
+        ${p.badge ? `<span class="product-badge">${p.badge}</span>` : ''}
+      </div>
+      <div class="product-card-body">
+        <p class="product-card-category">${getCategoryLabel(p.category)}</p>
+        <h3>${p.name}</h3>
+        <p>${p.desc.substring(0,90)}...</p>
+        <div class="product-card-footer">
+          <span class="product-price">${p.price}</span>
+          <button class="btn btn-whatsapp btn-sm" onclick="openProductModal(${p.id})">
+            <i class="fa-brands fa-whatsapp"></i> Reservar
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // Re-trigger scroll reveal
+  grid.querySelectorAll('.reveal').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 50);
+  });
+}
+
+function getCategoryLabel(cat) {
+  const labels = { cabello:'🌿 Cabello', unas:'💅 Uñas', facial:'✨ Facial', cuerpo:'🌸 Cuerpo' };
+  return labels[cat] || cat;
+}
+
+function openProductModal(id) {
+  selectedProduct = PRODUCTS.find(p => p.id === id);
+  if (!selectedProduct) return;
+  document.getElementById('modal-img').src = selectedProduct.image;
+  document.getElementById('modal-img').alt = selectedProduct.name;
+  document.getElementById('modal-category').textContent = getCategoryLabel(selectedProduct.category);
+  document.getElementById('modal-name').textContent = selectedProduct.name;
+  document.getElementById('modal-desc').textContent = selectedProduct.desc;
+  document.getElementById('modal-price').textContent = selectedProduct.price;
+  document.getElementById('client-name').value = '';
+  document.getElementById('client-phone').value = '';
+  modalOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+// Filter tabs
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeFilter = tab.dataset.filter;
+    renderProducts(activeFilter);
+  });
+});
+
+// Close modal
+modalClose.addEventListener('click', () => {
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+});
+modalOverlay.addEventListener('click', (e) => {
+  if (e.target === modalOverlay) {
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+// Reserve form submit
+document.getElementById('reserve-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const name  = document.getElementById('client-name').value.trim();
+  const phone = document.getElementById('client-phone').value.trim();
+
+  if (!name || !phone) {
+    showToast('Por favor completa todos los campos.', 'error');
+    return;
+  }
+
+  reserveProductWhatsApp({
+    nombre_producto:  selectedProduct.name,
+    precio:           selectedProduct.price,
+    nombre_cliente:   name,
+    telefono_cliente: phone
+  });
+
+  modalOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+  showToast('¡Redirigiendo a WhatsApp para completar tu reserva! 💅', 'success');
+});
+
+// Initial render
+renderProducts('all');
+</script>
+</body>
+</html>

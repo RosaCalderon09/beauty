@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Precios transparentes de Beauty Salon. Cortes desde L.150, tinte desde L.400, manicure desde L.120 y más servicios de belleza en Honduras." />
+  <title>Precios | Beauty Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .price-table { width:100%; border-collapse:collapse; background:var(--color-white); border-radius:var(--radius-md); overflow:hidden; box-shadow:var(--shadow-sm); }
+    .price-table thead th { background:linear-gradient(135deg,var(--color-gold),var(--color-gold-dark)); color:var(--color-white); padding:1rem 1.5rem; text-align:left; font-family:var(--font-heading); font-size:1.05rem; font-weight:600; }
+    .price-table tbody tr { border-bottom:1px solid var(--color-border); transition:background var(--transition); }
+    .price-table tbody tr:last-child { border-bottom:none; }
+    .price-table tbody tr:hover { background:var(--color-beige); }
+    .price-table td { padding:1rem 1.5rem; font-size:0.92rem; color:var(--color-text); vertical-align:middle; }
+    .price-table .service-name { font-weight:500; color:var(--color-dark); }
+    .price-table .price-amount { font-family:var(--font-heading); font-size:1.15rem; color:var(--color-gold-dark); font-weight:700; white-space:nowrap; }
+    .price-table .duration { color:var(--color-text-light); font-size:0.85rem; }
+    .price-section-title { font-family:var(--font-heading); font-size:1.5rem; color:var(--color-dark); margin-bottom:1rem; display:flex; align-items:center; gap:10px; }
+    .price-section-title img { width:32px; height:32px; object-fit:contain; }
+    .price-note { font-size:0.82rem; color:var(--color-text-light); font-style:italic; margin-top:0.5rem; }
+    .packages-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem; }
+    .package-card { background:var(--color-white); border-radius:var(--radius-md); padding:2rem; box-shadow:var(--shadow-sm); border:1.5px solid var(--color-border); position:relative; transition:var(--transition); }
+    .package-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-md); }
+    .package-card.featured { border-color:var(--color-gold); background:linear-gradient(145deg,#fff,var(--color-blush)); }
+    .package-tag { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:linear-gradient(135deg,var(--color-gold),var(--color-gold-dark)); color:white; font-size:0.75rem; padding:4px 16px; border-radius:var(--radius-xl); font-weight:700; white-space:nowrap; text-transform:uppercase; letter-spacing:0.08em; }
+    .package-icon { width:60px; height:60px; border-radius:var(--radius-md); background:var(--color-beige); display:flex; align-items:center; justify-content:center; margin-bottom:1rem; }
+    .package-icon img { width:36px; height:36px; object-fit:contain; }
+    .package-card h3 { margin-bottom:0.4rem; }
+    .package-desc { font-size:0.87rem; margin-bottom:1rem; }
+    .package-price { font-family:var(--font-heading); font-size:2.5rem; color:var(--color-gold-dark); font-weight:700; line-height:1; margin-bottom:0.5rem; }
+    .package-price span { font-size:1rem; color:var(--color-text-light); font-weight:400; }
+    .package-savings { font-size:0.82rem; color:var(--color-rose-deep); font-weight:600; margin-bottom:1.2rem; }
+    .package-includes { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:1.5rem; }
+    .package-include-item { display:flex; align-items:center; gap:8px; font-size:0.88rem; }
+    .package-include-item i { color:var(--color-gold); font-size:0.9rem; }
+    .faq { margin-top:1rem; }
+    .faq-item { border-bottom:1px solid var(--color-border); }
+    .faq-question { padding:1.2rem 0; font-weight:500; cursor:pointer; display:flex; align-items:center; justify-content:space-between; color:var(--color-dark); font-size:0.95rem; transition:color var(--transition); }
+    .faq-question:hover { color:var(--color-gold); }
+    .faq-question i { transition:transform var(--transition); color:var(--color-gold); flex-shrink:0; }
+    .faq-item.open .faq-question i { transform:rotate(180deg); }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.45s ease; }
+    .faq-item.open .faq-answer { max-height:300px; }
+    .faq-answer-inner { padding:0 0 1.2rem; font-size:0.9rem; color:var(--color-text-light); line-height:1.85; }
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="precios.html" class="active">Precios</a></li>
+      <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta"><a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+</div>
+
+<section class="page-hero">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="images/pexels-kampus-8834086.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.2;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,36,32,0.85),rgba(74,55,40,0.7));"></div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="script-text" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;">Transparencia Total</span>
+    <h1>Nuestros Precios</h1>
+    <p>Sin sorpresas — conoce todos nuestros precios antes de venir</p>
+    <nav class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Precios</span></nav>
+  </div>
+</section>
+
+<section class="section bg-cream">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="script-text">Lista de Servicios</span>
+      <h2>Precios por Servicio</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+      <p>Los precios pueden variar según la longitud del cabello y complejidad del trabajo. Consultar disponibilidad.</p>
+    </div>
+
+    <!-- Cabello -->
+    <div class="reveal" style="margin-bottom:3rem;">
+      <h3 class="price-section-title"><img src="iconos/corte-de-pelo.gif" alt="" /> Servicios de Cabello</h3>
+      <table class="price-table">
+        <thead><tr><th>Servicio</th><th>Descripción</th><th>Duración</th><th>Precio</th></tr></thead>
+        <tbody>
+          <tr><td class="service-name">Corte simple</td><td>Corte lavado y secado</td><td class="duration">45 min</td><td class="price-amount">L.150</td></tr>
+          <tr><td class="service-name">Corte con estilo</td><td>Corte + brushing o rizado</td><td class="duration">60 min</td><td class="price-amount">L.220</td></tr>
+          <tr><td class="service-name">Tinte completo</td><td>Coloración de raíz a puntas</td><td class="duration">90 min</td><td class="price-amount">L.400</td></tr>
+          <tr><td class="service-name">Mechas / Balayage</td><td>Técnica de iluminación personalizada</td><td class="duration">120 min</td><td class="price-amount">L.650</td></tr>
+          <tr><td class="service-name">Keratina alisante</td><td>Tratamiento de alisado y nutrición</td><td class="duration">180 min</td><td class="price-amount">L.800</td></tr>
+          <tr><td class="service-name">Hidratación profunda</td><td>Mascarilla + vapor capilar + amp.</td><td class="duration">60 min</td><td class="price-amount">L.300</td></tr>
+          <tr><td class="service-name">Brushing</td><td>Lavado y peinado con secador</td><td class="duration">45 min</td><td class="price-amount">L.180</td></tr>
+          <tr><td class="service-name">Alisado temporal</td><td>Tratamiento de alisado sin formol</td><td class="duration">120 min</td><td class="price-amount">L.550</td></tr>
+        </tbody>
+      </table>
+      <p class="price-note">* Los precios de tinte varían según longitud del cabello. Consultar en salón.</p>
+    </div>
+
+    <!-- Uñas -->
+    <div class="reveal" style="margin-bottom:3rem;">
+      <h3 class="price-section-title"><img src="iconos/esmalte-de-unas.gif" alt="" /> Manicure & Pedicure</h3>
+      <table class="price-table">
+        <thead><tr><th>Servicio</th><th>Descripción</th><th>Duración</th><th>Precio</th></tr></thead>
+        <tbody>
+          <tr><td class="service-name">Manicure clásica</td><td>Limpieza, corte y esmalte normal</td><td class="duration">30 min</td><td class="price-amount">L.120</td></tr>
+          <tr><td class="service-name">Manicure gel</td><td>Esmalte semipermanente gel</td><td class="duration">45 min</td><td class="price-amount">L.180</td></tr>
+          <tr><td class="service-name">Manicure + diseño</td><td>Gel + arte y decoraciones</td><td class="duration">60 min</td><td class="price-amount">L.220</td></tr>
+          <tr><td class="service-name">Uñas acrílicas</td><td>Extensión con polvo acrílico</td><td class="duration">90 min</td><td class="price-amount">L.380</td></tr>
+          <tr><td class="service-name">Pedicure clásica</td><td>Baño, exfoliación y esmalte</td><td class="duration">45 min</td><td class="price-amount">L.150</td></tr>
+          <tr><td class="service-name">Pedicure spa</td><td>Baño medicinal + masaje + gel</td><td class="duration">60 min</td><td class="price-amount">L.250</td></tr>
+          <tr><td class="service-name">Retiro de acrílico</td><td>Retiro seguro y suave</td><td class="duration">30 min</td><td class="price-amount">L.120</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Facial & Spa -->
+    <div class="reveal" style="margin-bottom:3rem;">
+      <h3 class="price-section-title"><img src="iconos/resplandecer.gif" alt="" /> Facial & Spa</h3>
+      <table class="price-table">
+        <thead><tr><th>Servicio</th><th>Descripción</th><th>Duración</th><th>Precio</th></tr></thead>
+        <tbody>
+          <tr><td class="service-name">Limpieza facial básica</td><td>Desmaquillaje, limpieza y tónico</td><td class="duration">45 min</td><td class="price-amount">L.250</td></tr>
+          <tr><td class="service-name">Facial hidratante</td><td>Limpieza + mascarilla + masaje</td><td class="duration">60 min</td><td class="price-amount">L.380</td></tr>
+          <tr><td class="service-name">Facial antiedad</td><td>Tratamiento premium rejuvenecedor</td><td class="duration">75 min</td><td class="price-amount">L.520</td></tr>
+          <tr><td class="service-name">Depilación cejas</td><td>Diseño y depilación con hilo</td><td class="duration">20 min</td><td class="price-amount">L.80</td></tr>
+          <tr><td class="service-name">Depilación labio</td><td>Depilación con hilo o cera</td><td class="duration">10 min</td><td class="price-amount">L.60</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Packages -->
+    <div class="section-header reveal" style="margin-top:3rem;">
+      <span class="script-text">Mejor precio</span>
+      <h2>Paquetes Especiales</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+      <p>Combina servicios y ahorra. Perfectos para ocasiones especiales.</p>
+    </div>
+
+    <div class="packages-grid">
+      <div class="package-card reveal delay-1">
+        <div class="package-icon"><img src="iconos/pinza-para-el-cabello.gif" alt="" /></div>
+        <h3>Paquete Básico</h3>
+        <p class="package-desc">Ideal para un refresh rápido y eficiente.</p>
+        <div class="package-price">L.320 <span>/ paquete</span></div>
+        <div class="package-savings">💰 Ahorras L.80 vs. servicios por separado</div>
+        <div class="package-includes">
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Corte de cabello</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Manicure clásica</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Depilación de cejas</div>
+        </div>
+        <a href="contacto.html" class="btn btn-outline-dark" style="width:100%;justify-content:center;">Agendar Paquete</a>
+      </div>
+
+      <div class="package-card featured reveal delay-2">
+        <span class="package-tag">⭐ Más Popular</span>
+        <div class="package-icon"><img src="iconos/peluquero.gif" alt="" /></div>
+        <h3>Paquete Glamour</h3>
+        <p class="package-desc">La experiencia completa de salón de belleza.</p>
+        <div class="package-price">L.680 <span>/ paquete</span></div>
+        <div class="package-savings">💰 Ahorras L.220 vs. servicios por separado</div>
+        <div class="package-includes">
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Corte con estilo</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Manicure gel</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Pedicure spa</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Limpieza facial</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Depilación cejas</div>
+        </div>
+        <a href="contacto.html" class="btn btn-primary" style="width:100%;justify-content:center;">Agendar Paquete</a>
+      </div>
+
+      <div class="package-card reveal delay-3">
+        <div class="package-icon"><img src="iconos/resplandecer.gif" alt="" /></div>
+        <h3>Paquete Novia</h3>
+        <p class="package-desc">Para el día más especial de tu vida.</p>
+        <div class="package-price">L.1,200 <span>/ paquete</span></div>
+        <div class="package-savings">💰 Ahorras L.400 vs. servicios por separado</div>
+        <div class="package-includes">
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Peinado especial</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Maquillaje nupcial</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Manicure + pedicure</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Facial hidratante</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Tratamiento capilar</div>
+          <div class="package-include-item"><i class="fa-solid fa-check"></i> Prueba incluida</div>
+        </div>
+        <a href="contacto.html" class="btn btn-outline-dark" style="width:100%;justify-content:center;">Agendar Paquete</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-white">
+  <div class="container" style="max-width:800px;">
+    <div class="section-header reveal">
+      <span class="script-text">Resolvemos tus dudas</span>
+      <h2>Preguntas Frecuentes</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item">
+        <div class="faq-question">¿Necesito reservar con anticipación? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Recomendamos reservar con al menos 24 horas de anticipación, especialmente para servicios de tinte y tratamientos capilares. Para fines de semana, es mejor reservar con 2-3 días de antelación.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Los precios de tinte incluyen el producto? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Sí, todos los precios publicados incluyen el producto necesario para el servicio. En el caso de tintes especiales o coloraciones muy personalizadas, podemos necesitar ajustar el precio según la cantidad de producto utilizado.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Aceptan pagos con tarjeta? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Actualmente aceptamos pagos en efectivo (Lempiras) y transferencias bancarias. Estamos en proceso de implementar pagos con tarjeta muy pronto. ¡Gracias por tu comprensión!</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Tienen política de cancelación? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Pedimos que las cancelaciones se notifiquen con al menos 3 horas de anticipación para poder asignar tu horario a otra clienta. Cancelaciones de último minuto repetidas pueden perder el derecho a reservar con anticipación.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">¿Ofrecen promociones? <i class="fa-solid fa-chevron-down"></i></div>
+        <div class="faq-answer"><div class="faq-answer-inner">¡Sí! Seguimos en Instagram y Facebook para ver nuestras promociones semanales, descuentos de cumpleaños y ofertas especiales de temporada. También tenemos programa de referidos donde obtienes 10% de descuento por cada clienta que refieras.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <h2 style="color:var(--color-white);">¿Lista para Reservar?</h2>
+      <p style="color:rgba(255,255,255,0.65);margin-bottom:2rem;">Sin sorpresas, sin cargos ocultos. Solo belleza y bienestar.</p>
+      <div class="cta-band-btns">
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Ahora</a>
+        <button onclick="openWhatsApp()" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot icon"></i><span>Tegucigalpa, Honduras</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone icon"></i><a href="tel:+50495307141">+504 9530-7141</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp icon"></i><a href="https://wa.me/50495307141">WhatsApp</a></div>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item"><span class="day">Lunes – Viernes</span><span>8:00 – 19:00</span></div>
+          <div class="footer-hours-item"><span class="day">Sábado</span><span>8:00 – 18:00</span></div>
+          <div class="footer-hours-item"><span class="day">Domingo</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2024 Beauty Salon. Todos los derechos reservados.</p></div>
+  </div>
+</footer>
+
+
+
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-question').forEach(q => {
+  q.addEventListener('click', () => {
+    const item = q.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+</script>
+</body>
+</html>

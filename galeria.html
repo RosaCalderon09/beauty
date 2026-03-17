@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Galería de transformaciones de Beauty Salon. Cortes, colores, manicure, pedicure y tratamientos faciales. Inspírate con nuestros trabajos." />
+  <title>Galería | Beauty Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .gallery-filter-tabs { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:2.5rem; }
+    .gallery-filter-tab { padding:9px 22px; border-radius:var(--radius-xl); font-size:0.85rem; font-weight:500; letter-spacing:0.06em; cursor:pointer; transition:var(--transition); border:1.5px solid var(--color-border); background:var(--color-white); color:var(--color-text-light); }
+    .gallery-filter-tab.active, .gallery-filter-tab:hover { background:var(--color-gold); color:var(--color-white); border-color:var(--color-gold); }
+
+    .masonry-grid {
+      columns: 4;
+      column-gap: 12px;
+    }
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 12px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .masonry-item img { width:100%; display:block; transition:transform var(--transition-slow); }
+    .masonry-item:hover img { transform:scale(1.06); }
+    .masonry-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top,rgba(44,36,32,0.75) 0%,transparent 60%);
+      opacity:0; transition:opacity var(--transition);
+      display:flex; align-items:flex-end; padding:1rem;
+    }
+    .masonry-item:hover .masonry-overlay { opacity:1; }
+    .masonry-overlay-text { color:var(--color-white); font-family:var(--font-heading); font-style:italic; font-size:0.95rem; }
+
+    @media(max-width:900px) { .masonry-grid { columns:3; } }
+    @media(max-width:600px) { .masonry-grid { columns:2; } }
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+      <li><a href="galeria.html" class="active">Galería</a></li><li><a href="precios.html">Precios</a></li>
+      <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta"><a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+</div>
+
+<section class="page-hero">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="images/pexels-cottonbro-7449894.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.22;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,36,32,0.85),rgba(74,55,40,0.7));"></div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="script-text" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;">Nuestras Transformaciones</span>
+    <h1>Galería</h1>
+    <p>Inspírate con los resultados reales de nuestras clientas</p>
+    <nav class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Galería</span></nav>
+  </div>
+</section>
+
+<section class="section bg-cream">
+  <div class="container">
+    <div class="gallery-filter-tabs">
+      <button class="gallery-filter-tab active" data-filter="all">Todos</button>
+      <button class="gallery-filter-tab" data-filter="cabello">Cabello</button>
+      <button class="gallery-filter-tab" data-filter="unas">Uñas</button>
+      <button class="gallery-filter-tab" data-filter="facial">Facial</button>
+      <button class="gallery-filter-tab" data-filter="salon">Salón</button>
+    </div>
+
+    <div class="masonry-grid" id="gallery-grid">
+      <!-- Items injected by JS -->
+    </div>
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <h2 style="color:var(--color-white);">¿Te inspiraste? ¡Tu turno!</h2>
+      <p style="color:rgba(255,255,255,0.65);margin-bottom:2rem;">Agenda tu cita y transforma tu look con nuestras expertas.</p>
+      <div class="cta-band-btns">
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Ahora</a>
+        <button onclick="openWhatsApp()" class="btn btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot icon"></i><span>Tegucigalpa, Honduras</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone icon"></i><a href="tel:+50495307141">+504 9530-7141</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp icon"></i><a href="https://wa.me/50495307141">WhatsApp</a></div>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item"><span class="day">Lunes – Viernes</span><span>8:00 – 19:00</span></div>
+          <div class="footer-hours-item"><span class="day">Sábado</span><span>8:00 – 18:00</span></div>
+          <div class="footer-hours-item"><span class="day">Domingo</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Beauty Salon. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- Lightbox Modal -->
+<div class="modal-overlay" id="lightbox-overlay">
+  <div style="background:transparent;padding:0;">
+    <button onclick="document.getElementById('lightbox-overlay').classList.remove('open');document.body.style.overflow='';" style="position:fixed;top:1.5rem;right:1.5rem;background:rgba(44,36,32,0.8);color:white;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;cursor:pointer;border:none;z-index:9001;">&times;</button>
+    <img id="lightbox-main-img" src="" alt="" style="max-height:90vh;max-width:92vw;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5);" />
+  </div>
+</div>
+
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+const GALLERY_ITEMS = [
+  { src:'images/pexels-cottonbro-7449894.jpg',    label:'Corte & Estilo',      category:'cabello' },
+  { src:'images/pexels-n-voitkevich-8468134.jpg', label:'Manicure Arte',        category:'unas' },
+  { src:'images/pexels-cottonbro-3993449.jpg',    label:'Tratamiento Premium',  category:'cabello' },
+  { src:'images/pexels-gabby-k-6621472.jpg',      label:'Peinado Esencial',     category:'cabello' },
+  { src:'images/pexels-cottonbro-3992870.jpg',    label:'Spa Facial',           category:'facial' },
+  { src:'images/pexels-artempodrez-4783340.jpg',  label:'Ambiente Salón',       category:'salon' },
+  { src:'images/pexels-n-voitkevich-8467975.jpg', label:'Manicure Gel',         category:'unas' },
+  { src:'images/pexels-cottonbro-3992863.jpg',    label:'Corte Moderno',        category:'cabello' },
+  { src:'images/pexels-n-voitkevich-8468129.jpg', label:'Coloración Balayage',  category:'cabello' },
+  { src:'images/pexels-cottonbro-3993126.jpg',    label:'Pedicure Spa',         category:'unas' },
+  { src:'images/pexels-artempodrez-4783290.jpg',  label:'Tratamiento Facial',   category:'facial' },
+  { src:'images/pexels-n-voitkevich-8468162.jpg', label:'Hidratación Capilar',  category:'cabello' },
+  { src:'images/pexels-cottonbro-3993312.jpg',    label:'Brushing Premium',     category:'cabello' },
+  { src:'images/pexels-gabby-k-6621472.jpg',      label:'Look Especial',        category:'cabello' },
+  { src:'images/pexels-cottonbro-7440059.jpg',    label:'Nuestro Equipo',       category:'salon' },
+  { src:'images/pexels-cottonbro-7428096.jpg',    label:'Atención al Cliente',  category:'salon' },
+  { src:'images/pexels-kampus-8834086.jpg',       label:'Clienta Feliz',        category:'salon' },
+  { src:'images/pexels-laryssa-suaid-798122-1667071.jpg', label:'Resultado Perfecto', category:'cabello' },
+  { src:'images/pexels-rdne-7755534.jpg',         label:'Sonrisa de Confianza', category:'salon' },
+  { src:'images/pexels-nadezhda-moryak-6503332.jpg', label:'Spa Day',           category:'facial' },
+];
+
+let galleryFilter = 'all';
+const galleryGrid = document.getElementById('gallery-grid');
+
+function renderGallery(filter) {
+  const items = filter === 'all' ? GALLERY_ITEMS : GALLERY_ITEMS.filter(i => i.category === filter);
+  galleryGrid.innerHTML = items.map((item, idx) => `
+    <div class="masonry-item" data-src="${item.src}" data-label="${item.label}" data-category="${item.category}">
+      <img src="${item.src}" alt="${item.label}" loading="lazy" />
+      <div class="masonry-overlay">
+        <span class="masonry-overlay-text">${item.label}</span>
+      </div>
+    </div>
+  `).join('');
+
+  galleryGrid.querySelectorAll('.masonry-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.getElementById('lightbox-main-img').src = item.dataset.src;
+      document.getElementById('lightbox-main-img').alt = item.dataset.label;
+      document.getElementById('lightbox-overlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+}
+
+document.querySelectorAll('.gallery-filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.gallery-filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    galleryFilter = tab.dataset.filter;
+    renderGallery(galleryFilter);
+  });
+});
+
+document.getElementById('lightbox-overlay').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('lightbox-overlay')) {
+    document.getElementById('lightbox-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+});
+
+renderGallery('all');
+</script>
+</body>
+</html>

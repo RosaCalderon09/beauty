@@ -1,0 +1,289 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Descubre todos los servicios de Beauty Salon: corte de cabello, tinte, manicure, pedicure, tratamientos capilares y spa facial en Honduras." />
+  <title>Servicios | Beauty Salon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .service-detail {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem,5vw,5rem);
+      align-items: center;
+      padding: clamp(3rem,6vw,5rem) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .service-detail:last-child { border-bottom: none; }
+    .service-detail.reverse .service-detail-media { order: 1; }
+    .service-detail.reverse .service-detail-content { order: -1; }
+    .service-detail-media { border-radius: var(--radius-md); overflow: hidden; height: 380px; position:relative; }
+    .service-detail-media img { width:100%; height:100%; object-fit:cover; transition:transform var(--transition-slow); }
+    .service-detail-media:hover img { transform:scale(1.05); }
+    .service-detail-content h2 { font-size:clamp(1.6rem,3vw,2.2rem); margin-bottom:1rem; }
+    .service-detail-content p { margin-bottom:1rem; }
+    .service-includes { list-style:none; margin:1.2rem 0; display:flex; flex-direction:column; gap:0.6rem; }
+    .service-includes li { display:flex; align-items:center; gap:10px; font-size:0.92rem; color:var(--color-text); }
+    .service-includes li i { color:var(--color-gold); font-size:0.85rem; flex-shrink:0; }
+    .service-detail-price { font-family:var(--font-heading); font-size:2rem; color:var(--color-gold-dark); font-weight:700; margin:1rem 0; }
+    .service-detail-price span { font-size:1rem; color:var(--color-text-light); font-weight:400; }
+    .service-label { display:inline-flex; align-items:center; gap:6px; background:var(--color-beige); color:var(--color-gold-dark); font-size:0.8rem; padding:5px 14px; border-radius:var(--radius-xl); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.8rem; }
+    @media(max-width:800px){
+      .service-detail { grid-template-columns:1fr; }
+      .service-detail.reverse .service-detail-media,.service-detail.reverse .service-detail-content { order:unset; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Logo" />
+      <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html" class="active">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+      <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+      <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <div class="nav-cta"><a href="contacto.html" class="btn btn-primary btn-sm"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta"><a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Cita</a></div>
+</div>
+
+<section class="page-hero">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="images/pexels-n-voitkevich-8468129.jpg" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.2;" />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(44,36,32,0.85),rgba(74,55,40,0.7));"></div>
+  </div>
+  <div class="container page-hero-inner">
+    <span class="script-text" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;">Lo que hacemos</span>
+    <h1>Nuestros Servicios</h1>
+    <p>Tratamientos de belleza premium diseñados especialmente para ti</p>
+    <nav class="breadcrumb"><a href="index.html">Inicio</a><span>/</span><span>Servicios</span></nav>
+  </div>
+</section>
+
+<section class="section bg-cream">
+  <div class="container">
+
+    <!-- Corte de Cabello -->
+    <div class="service-detail">
+      <div class="service-detail-media reveal-left">
+        <img src="images/pexels-cottonbro-3992863.jpg" alt="Corte de Cabello" loading="lazy" />
+      </div>
+      <div class="service-detail-content reveal-right">
+        <span class="service-label"><img src="iconos/corte-de-pelo.gif" style="width:22px;height:22px;object-fit:contain;" alt="" /> Corte de Cabello</span>
+        <h2>Corte de Cabello</h2>
+        <p>Transforma tu look con nuestros cortes de cabello modernos y de moda. Nuestras estilistas expertas analizarán la forma de tu rostro y textura de tu cabello para recomendar el corte perfecto para ti.</p>
+        <p>Desde cortes clásicos hasta los más vanguardistas, siempre a la moda y adaptados a tu personalidad única.</p>
+        <ul class="service-includes">
+          <li><i class="fa-solid fa-check"></i> Consulta personalizada</li>
+          <li><i class="fa-solid fa-check"></i> Lavado de cabello incluido</li>
+          <li><i class="fa-solid fa-check"></i> Corte con técnica premium</li>
+          <li><i class="fa-solid fa-check"></i> Secado y peinado final</li>
+          <li><i class="fa-solid fa-check"></i> Productos de acabado premium</li>
+        </ul>
+        <div class="service-detail-price">L.150 <span>/ desde</span></div>
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Este Servicio</a>
+      </div>
+    </div>
+
+    <!-- Tinte -->
+    <div class="service-detail reverse">
+      <div class="service-detail-media reveal-right">
+        <img src="images/pexels-n-voitkevich-8468129.jpg" alt="Tinte y Color" loading="lazy" />
+      </div>
+      <div class="service-detail-content reveal-left">
+        <span class="service-label"><img src="iconos/gel-para-el-cabello.gif" style="width:22px;height:22px;object-fit:contain;" alt="" /> Coloración</span>
+        <h2>Tinte & Coloración</h2>
+        <p>Expresa tu personalidad con colores vibrantes y técnicas de coloración de última generación. Desde balayage natural hasta colores fantasía, nuestras coloristas dominarán cada técnica.</p>
+        <p>Utilizamos marcas premium que cuidan la salud de tu cabello mientras te dan el color que sueñas.</p>
+        <ul class="service-includes">
+          <li><i class="fa-solid fa-check"></i> Coloración completa o parcial</li>
+          <li><i class="fa-solid fa-check"></i> Mechas, balayage, ombré</li>
+          <li><i class="fa-solid fa-check"></i> Tintes sin amoníaco disponibles</li>
+          <li><i class="fa-solid fa-check"></i> Tratamiento post-color incluido</li>
+          <li><i class="fa-solid fa-check"></i> Asesoría de color personalizada</li>
+        </ul>
+        <div class="service-detail-price">L.400 <span>/ desde</span></div>
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Este Servicio</a>
+      </div>
+    </div>
+
+    <!-- Manicure -->
+    <div class="service-detail">
+      <div class="service-detail-media reveal-left">
+        <img src="images/pexels-n-voitkevich-8467975.jpg" alt="Manicure" loading="lazy" />
+      </div>
+      <div class="service-detail-content reveal-right">
+        <span class="service-label"><img src="iconos/esmalte-de-unas.gif" style="width:22px;height:22px;object-fit:contain;" alt="" /> Manicure</span>
+        <h2>Manicure Profesional</h2>
+        <p>Tus manos merecen la mejor atención. Nuestro servicio de manicure combina técnicas profesionales con productos de altísima calidad para unas manos perfectas.</p>
+        <p>Desde el clásico esmalte en gel hasta diseños artísticos personalizados, somos expertas en hacerte brillar.</p>
+        <ul class="service-includes">
+          <li><i class="fa-solid fa-check"></i> Limpieza y exfoliación de manos</li>
+          <li><i class="fa-solid fa-check"></i> Corte y forma de uñas</li>
+          <li><i class="fa-solid fa-check"></i> Cutícula y masaje de manos</li>
+          <li><i class="fa-solid fa-check"></i> Esmalte semipermanente o gel</li>
+          <li><i class="fa-solid fa-check"></i> Diseños artísticos a pedido</li>
+        </ul>
+        <div class="service-detail-price">L.120 <span>/ desde</span></div>
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Este Servicio</a>
+      </div>
+    </div>
+
+    <!-- Pedicure -->
+    <div class="service-detail reverse">
+      <div class="service-detail-media reveal-right">
+        <img src="images/pexels-cottonbro-3993126.jpg" alt="Pedicure" loading="lazy" />
+      </div>
+      <div class="service-detail-content reveal-left">
+        <span class="service-label"><img src="iconos/clavos.gif" style="width:22px;height:22px;object-fit:contain;" alt="" /> Pedicure</span>
+        <h2>Pedicure de Lujo</h2>
+        <p>Mima tus pies con nuestro servicio de pedicure de lujo. Comenzamos con un reconfortante baño de pies y terminamos con un acabado perfecto que te hará lucir increíble.</p>
+        <ul class="service-includes">
+          <li><i class="fa-solid fa-check"></i> Baño de pies aromaterapéutico</li>
+          <li><i class="fa-solid fa-check"></i> Exfoliación y eliminación de durezas</li>
+          <li><i class="fa-solid fa-check"></i> Masaje relajante de pies y piernas</li>
+          <li><i class="fa-solid fa-check"></i> Corte y forma de uñas</li>
+          <li><i class="fa-solid fa-check"></i> Esmalte lasting o gel</li>
+        </ul>
+        <div class="service-detail-price">L.150 <span>/ desde</span></div>
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Este Servicio</a>
+      </div>
+    </div>
+
+    <!-- Tratamientos Capilares -->
+    <div class="service-detail">
+      <div class="service-detail-media reveal-left">
+        <img src="images/pexels-n-voitkevich-8468162.jpg" alt="Tratamientos Capilares" loading="lazy" />
+      </div>
+      <div class="service-detail-content reveal-right">
+        <span class="service-label"><img src="iconos/lavado-de-cabello.gif" style="width:22px;height:22px;object-fit:contain;" alt="" /> Tratamientos</span>
+        <h2>Tratamientos Capilares</h2>
+        <p>Recupera la salud y brillo de tu cabello con nuestros tratamientos especializados. Analizamos la condición actual de tu cabello para diseñar el tratamiento ideal para ti.</p>
+        <ul class="service-includes">
+          <li><i class="fa-solid fa-check"></i> Hidratación profunda</li>
+          <li><i class="fa-solid fa-check"></i> Keratina alisante o nutritiva</li>
+          <li><i class="fa-solid fa-check"></i> Tratamiento anti-caída</li>
+          <li><i class="fa-solid fa-check"></i> Reconstrucción de fibra capilar</li>
+          <li><i class="fa-solid fa-check"></i> Diagnóstico capilar incluido</li>
+        </ul>
+        <div class="service-detail-price">L.300 <span>/ desde</span></div>
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Este Servicio</a>
+      </div>
+    </div>
+
+    <!-- Spa Facial -->
+    <div class="service-detail reverse">
+      <div class="service-detail-media reveal-right">
+        <img src="images/pexels-artempodrez-4783290.jpg" alt="Spa Facial" loading="lazy" />
+      </div>
+      <div class="service-detail-content reveal-left">
+        <span class="service-label"><img src="iconos/resplandecer.gif" style="width:22px;height:22px;object-fit:contain;" alt="" /> Spa Facial</span>
+        <h2>Spa Facial Premium</h2>
+        <p>Una experiencia sensorial completa para tu piel. Nuestro spa facial combina técnicas de limpieza profunda, hidratación intensiva y relajación para dejarte con una piel radiante.</p>
+        <ul class="service-includes">
+          <li><i class="fa-solid fa-check"></i> Diagnóstico de tipo de piel</li>
+          <li><i class="fa-solid fa-check"></i> Limpieza facial profunda</li>
+          <li><i class="fa-solid fa-check"></i> Vapor y extracción de impurezas</li>
+          <li><i class="fa-solid fa-check"></i> Mascarilla hidratante o anti-edad</li>
+          <li><i class="fa-solid fa-check"></i> Masaje facial relajante</li>
+        </ul>
+        <div class="service-detail-price">L.250 <span>/ desde</span></div>
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Este Servicio</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <h2 style="color:var(--color-white);">¿Te gustó algún servicio?</h2>
+      <p style="color:rgba(255,255,255,0.65);margin-bottom:2rem;">Agenda tu cita ahora y vive la experiencia Beauty Salon.</p>
+      <div class="cta-band-btns">
+        <a href="contacto.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Agendar Ahora</a>
+        <a href="precios.html" class="btn btn-outline"><i class="fa-solid fa-tag"></i> Ver Precios</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">Beauty Salon<span class="nav-logo-sub">Salón de Belleza</span></span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras.</p>
+        <div class="footer-social">
+          <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li><li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li><li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li><li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item"><i class="fa-solid fa-location-dot icon"></i><span>Tegucigalpa, Honduras</span></div>
+        <div class="footer-contact-item"><i class="fa-solid fa-phone icon"></i><a href="tel:+50495307141">+504 9530-7141</a></div>
+        <div class="footer-contact-item"><i class="fa-brands fa-whatsapp icon"></i><a href="https://wa.me/50495307141">WhatsApp</a></div>
+      </div>
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item"><span class="day">Lunes – Viernes</span><span>8:00 – 19:00</span></div>
+          <div class="footer-hours-item"><span class="day">Sábado</span><span>8:00 – 18:00</span></div>
+          <div class="footer-hours-item"><span class="day">Domingo</span><span>Cerrado</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Beauty Salon. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+
+
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>

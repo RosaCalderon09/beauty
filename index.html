@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Beauty Salon - Tu salón de belleza profesional. Servicios de corte, tinte, manicure, pedicure, tratamientos capilares y spa facial. Agenda tu cita hoy." />
+  <meta name="keywords" content="salón de belleza, peluquería, manicure, pedicure, tratamientos capilares, spa facial, Honduras" />
+  <title>Beauty Salon | Bienvenida</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+  <style>
+    /* ===== HOME-SPECIFIC STYLES ===== */
+
+    /* Hero particles canvas */
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Feature strip */
+    .feature-strip {
+      background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+      padding: 1.2rem 0;
+    }
+
+    .feature-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(1.5rem, 4vw, 4rem);
+      flex-wrap: wrap;
+    }
+
+    .feature-strip-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.95);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .feature-strip-item i { font-size: 1.1rem; opacity: 0.8; }
+
+    /* CTA BAND */
+    .cta-band {
+      background: linear-gradient(135deg, var(--color-dark) 0%, #3a2a1e 100%);
+      padding: 5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,169,110,0.15) 0%, transparent 70%);
+    }
+
+    .cta-band-inner { position: relative; z-index: 1; }
+
+    .cta-band h2 { color: var(--color-white); margin-bottom: 1rem; }
+    .cta-band p  { color: rgba(255,255,255,0.65); margin-bottom: 2rem; font-size: 1.05rem; }
+    .cta-band-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* Featured services strip */
+    .featured-services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .featured-service-item {
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border-right: 1px solid var(--color-border);
+      transition: background var(--transition);
+    }
+
+    .featured-service-item:last-child { border-right: none; }
+    .featured-service-item:hover { background: var(--color-blush); }
+
+    .featured-service-item img {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 1rem;
+      object-fit: contain;
+    }
+
+    .featured-service-item h4 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .featured-service-item p  { font-size: 0.83rem; }
+  </style>
+</head>
+<body>
+
+<!-- ===== PRELOADER ===== -->
+<div id="preloader">
+  <img src="logo.jpeg" alt="Beauty Salon" class="preloader-logo" />
+  <div class="preloader-bar"><div class="preloader-progress"></div></div>
+  <p style="font-family:'Dancing Script',cursive;color:var(--color-gold);font-size:1.1rem;">Bienvenida...</p>
+</div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar transparent" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.jpeg" alt="Beauty Salon Logo" />
+      <span class="nav-logo-text">
+        Beauty Salon
+        <span class="nav-logo-sub">Salón de Belleza</span>
+      </span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Inicio</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li><a href="servicios.html">Servicios</a></li>
+      <li><a href="productos.html">Productos</a></li>
+    
+      <li><a href="precios.html">Precios</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="contacto.html" class="btn btn-primary btn-sm">
+        <i class="fa-solid fa-calendar-check"></i> Agendar Cita
+      </a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== MOBILE MENU ===== -->
+<div class="mobile-menu" id="mobile-menu">
+  <ul class="mobile-menu-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li><a href="servicios.html">Servicios</a></li>
+    <li><a href="productos.html">Productos</a></li>
+    <li><a href="galeria.html">Galería</a></li>
+    <li><a href="precios.html">Precios</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+  </ul>
+  <div class="mobile-menu-cta">
+    <a href="contacto.html" class="btn btn-primary">
+      <i class="fa-solid fa-calendar-check"></i> Agendar Cita
+    </a>
+    <a href="productos.html" class="btn btn-outline-dark">
+      <i class="fa-solid fa-bag-shopping"></i> Ver Productos
+    </a>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline>
+      <source src="images/3996895-uhd_4096_2160_25fps.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Three.js Canvas -->
+  <canvas id="hero-canvas"></canvas>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      Salón Premium en Honduras
+    </div>
+
+    <h1>
+      Bienvenida a<br>
+      <strong>Beauty Salon</strong>
+    </h1>
+    <p class="hero-subtitle">Realza tu belleza con nuestros expertos</p>
+
+    <div class="hero-buttons">
+      <a href="contacto.html" class="btn btn-primary">
+        <i class="fa-solid fa-calendar-check"></i> Agendar Cita
+      </a>
+      <a href="servicios.html" class="btn btn-outline">
+        <i class="fa-solid fa-sparkles"></i> Ver Servicios
+      </a>
+      <a href="productos.html" class="btn btn-outline">
+        <i class="fa-solid fa-bag-shopping"></i> Ver Productos
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ===== FEATURE STRIP ===== -->
+<div class="feature-strip">
+  <div class="container">
+    <div class="feature-strip-inner">
+      <div class="feature-strip-item">
+        <i class="fa-solid fa-star"></i>
+        <span>+10 Años de Experiencia</span>
+      </div>
+      <div class="feature-strip-item">
+        <i class="fa-solid fa-users"></i>
+        <span>+2,000 Clientas Felices</span>
+      </div>
+      <div class="feature-strip-item">
+        <i class="fa-solid fa-scissors"></i>
+        <span>6 Servicios Especializados</span>
+      </div>
+      <div class="feature-strip-item">
+        <i class="fa-solid fa-clock"></i>
+        <span>Lun–Sáb: 8am – 7pm</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ABOUT TEASER ===== -->
+<section class="section bg-cream">
+  <div class="container">
+    <div class="about-split">
+      <div class="about-img-stack reveal-left">
+        <img src="images/pexels-artempodrez-4783340.jpg" alt="Nuestro salón" class="about-img-main" />
+        <img src="images/pexels-n-voitkevich-8467975.jpg" alt="Tratamiento" class="about-img-accent" />
+        <div class="about-experience-badge">
+          <span class="num">10+</span>
+          <span class="txt">Años de<br>Experiencia</span>
+        </div>
+      </div>
+
+      <div class="about-content reveal-right">
+        <span class="script-text">Sobre Nosotras</span>
+        <h2>Tu Salón de Confianza desde 2014</h2>
+        <div class="divider"><div class="divider-diamond"></div></div>
+        <p>En Beauty Salon creemos que cada mujer merece sentirse extraordinaria. Nuestro equipo de profesionales certificadas combina técnicas avanzadas con productos premium para ofrecerte resultados que superan tus expectativas.</p>
+        <p>Nuestro ambiente cálido y acogedor te hará sentir como en casa mientras te consentimos con los mejores tratamientos de belleza.</p>
+
+        <div class="about-values">
+          <div class="about-value">
+            <div class="about-value-icon"><i class="fa-solid fa-leaf"></i></div>
+            <div>
+              <h4>Productos Premium</h4>
+              <p>Solo marcas reconocidas y de alta calidad.</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon"><i class="fa-solid fa-award"></i></div>
+            <div>
+              <h4>Equipo Certificado</h4>
+              <p>Profesionales con formación continua.</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon"><i class="fa-solid fa-heart"></i></div>
+            <div>
+              <h4>Atención Personalizada</h4>
+              <p>Cada consulta adaptada a tus necesidades.</p>
+            </div>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <h4>Higiene Garantizada</h4>
+              <p>Protocolos estrictos de esterilización.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:2rem; display:flex; gap:1rem; flex-wrap:wrap;">
+          <a href="nosotros.html" class="btn btn-primary">Conoce Nuestra Historia</a>
+          <a href="contacto.html" class="btn btn-outline-dark">Agenda Tu Cita</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number" data-count="2000" data-suffix="+">0</span>
+        <span class="stat-label">Clientas Atendidas</span>
+      </div>
+      <div class="stat-item reveal delay-1">
+        <span class="stat-number" data-count="10" data-suffix="+">0</span>
+        <span class="stat-label">Años de Experiencia</span>
+      </div>
+      <div class="stat-item reveal delay-2">
+        <span class="stat-number" data-count="6" data-suffix="">0</span>
+        <span class="stat-label">Servicios Especiales</span>
+      </div>
+      <div class="stat-item reveal delay-3">
+        <span class="stat-number" data-count="98" data-suffix="%">0</span>
+        <span class="stat-label">Clientas Satisfechas</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICES PREVIEW ===== -->
+<section class="section bg-gold-pattern">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="script-text">Lo que ofrecemos</span>
+      <h2>Nuestros Servicios</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+      <p>Descubre nuestra gama completa de tratamientos de belleza diseñados especialmente para ti.</p>
+    </div>
+
+    <div class="services-grid">
+      <!-- Corte de Cabello -->
+      <div class="service-card reveal delay-1">
+        <div class="service-card-img-wrap">
+          <img src="images/pexels-cottonbro-3992863.jpg" alt="Corte de Cabello" class="service-card-img" loading="lazy" />
+          <span class="service-card-badge">Desde L.150</span>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <img src="iconos/corte-de-pelo.gif" alt="Corte" />
+          </div>
+          <h3>Corte de Cabello</h3>
+          <p>Transforma tu look con nuestros cortes modernos y a la moda, adaptados a tu tipo de rostro.</p>
+          <div class="service-card-footer">
+            <span class="service-price">L.150+</span>
+            <a href="contacto.html" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tinte -->
+      <div class="service-card reveal delay-2">
+        <div class="service-card-img-wrap">
+          <img src="images/pexels-n-voitkevich-8468129.jpg" alt="Tinte" class="service-card-img" loading="lazy" />
+          <span class="service-card-badge">Desde L.400</span>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <img src="iconos/gel-para-el-cabello.gif" alt="Tinte" />
+          </div>
+          <h3>Tinte & Color</h3>
+          <p>Colores vibrantes, mechas, balayage y técnicas de coloración personalizadas.</p>
+          <div class="service-card-footer">
+            <span class="service-price">L.400+</span>
+            <a href="contacto.html" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manicure -->
+      <div class="service-card reveal delay-3">
+        <div class="service-card-img-wrap">
+          <img src="images/pexels-n-voitkevich-8467975.jpg" alt="Manicure" class="service-card-img" loading="lazy" />
+          <span class="service-card-badge">Desde L.120</span>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <img src="iconos/esmalte-de-unas.gif" alt="Manicure" />
+          </div>
+          <h3>Manicure</h3>
+          <p>Uñas perfectas con esmaltes premium, uñas acrílicas, gel y diseños artísticos únicos.</p>
+          <div class="service-card-footer">
+            <span class="service-price">L.120+</span>
+            <a href="contacto.html" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pedicure -->
+      <div class="service-card reveal delay-4">
+        <div class="service-card-img-wrap">
+          <img src="images/pexels-cottonbro-3993126.jpg" alt="Pedicure" class="service-card-img" loading="lazy" />
+          <span class="service-card-badge">Desde L.150</span>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <img src="iconos/clavos.gif" alt="Pedicure" />
+          </div>
+          <h3>Pedicure</h3>
+          <p>Cuida y embellece tus pies con tratamientos exfoliantes, masajes y pintura de calidad.</p>
+          <div class="service-card-footer">
+            <span class="service-price">L.150+</span>
+            <a href="contacto.html" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tratamientos Capilares -->
+      <div class="service-card reveal delay-5">
+        <div class="service-card-img-wrap">
+          <img src="images/pexels-n-voitkevich-8468162.jpg" alt="Tratamientos Capilares" class="service-card-img" loading="lazy" />
+          <span class="service-card-badge">Desde L.300</span>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <img src="iconos/lavado-de-cabello.gif" alt="Tratamiento" />
+          </div>
+          <h3>Tratamientos Capilares</h3>
+          <p>Hidratación profunda, keratina, nutrición y reparación para un cabello radiante.</p>
+          <div class="service-card-footer">
+            <span class="service-price">L.300+</span>
+            <a href="contacto.html" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Spa Facial -->
+      <div class="service-card reveal delay-6">
+        <div class="service-card-img-wrap">
+          <img src="images/pexels-artempodrez-4783290.jpg" alt="Spa Facial" class="service-card-img" loading="lazy" />
+          <span class="service-card-badge">Desde L.250</span>
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <img src="iconos/resplandecer.gif" alt="Spa Facial" />
+          </div>
+          <h3>Spa Facial</h3>
+          <p>Limpieza facial profunda, hidratación y tratamientos antiedad para una piel luminosa.</p>
+          <div class="service-card-footer">
+            <span class="service-price">L.250+</span>
+            <a href="contacto.html" class="btn btn-primary btn-sm">Agendar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="servicios.html" class="btn btn-outline-dark">
+        <i class="fa-solid fa-arrow-right"></i> Ver Todos los Servicios
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY PREVIEW ===== -->
+<section class="section bg-white">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="script-text">Nuestro Trabajo</span>
+      <h2>Galería de Transformaciones</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+      <p>Cada imagen cuenta una historia de transformación y confianza renovada.</p>
+    </div>
+
+    <div class="gallery-grid" style="max-height:700px; overflow:hidden;">
+      <div class="gallery-item tall reveal">
+        <img src="images/pexels-cottonbro-7449894.jpg" alt="Transformación 1" class="gallery-img" loading="lazy" />
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Corte & Color</span></div>
+      </div>
+      <div class="gallery-item reveal delay-1">
+        <img src="images/pexels-n-voitkevich-8468134.jpg" alt="Manicure" class="gallery-img" loading="lazy" />
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Manicure Arte</span></div>
+      </div>
+      <div class="gallery-item wide reveal delay-2">
+        <img src="images/pexels-cottonbro-3993449.jpg" alt="Tratamiento" class="gallery-img" loading="lazy" />
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Tratamiento Premium</span></div>
+      </div>
+      <div class="gallery-item reveal delay-3">
+        <img src="images/pexels-gabby-k-6621472.jpg" alt="Peinado" class="gallery-img" loading="lazy" />
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Peinado Especial</span></div>
+      </div>
+      <div class="gallery-item reveal delay-4">
+        <img src="images/pexels-cottonbro-3992870.jpg" alt="Spa" class="gallery-img" loading="lazy" />
+        <div class="gallery-overlay"><span class="gallery-overlay-text">Spa Facial</span></div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="galeria.html" class="btn btn-primary">
+        <i class="fa-solid fa-images"></i> Ver Galería Completa
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="section bg-beige">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="script-text">Lo que dicen</span>
+      <h2>Nuestras Clientas</h2>
+      <div class="divider"><div class="divider-diamond"></div></div>
+    </div>
+
+    <div class="testimonials-slider">
+      <div class="testimonial-card reveal delay-1">
+        <div class="stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-text">"Excelente servicio, el tinte quedó perfecto y el ambiente es muy acogedor. ¡Definitivamente vuelvo!"</p>
+        <div class="testimonial-author">
+          <img src="images/pexels-laryssa-suaid-798122-1667071.jpg" alt="María" class="testimonial-avatar" />
+          <div>
+            <p class="testimonial-name">María García</p>
+            <p class="testimonial-role">Clienta Regular</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal delay-2">
+        <div class="stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-text">"El manicure duró más de 3 semanas. Las chicas son muy profesionales y el lugar es hermoso."</p>
+        <div class="testimonial-author">
+          <img src="images/pexels-kampus-8834086.jpg" alt="Ana" class="testimonial-avatar" />
+          <div>
+            <p class="testimonial-name">Ana Rodríguez</p>
+            <p class="testimonial-role">Clienta VIP</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal delay-3">
+        <div class="stars">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+        </div>
+        <p class="testimonial-text">"El spa facial fue una experiencia increíble. Mi piel quedó perfecta. ¡100% recomendado!"</p>
+        <div class="testimonial-author">
+          <img src="images/pexels-kampus-8834087.jpg" alt="Sofía" class="testimonial-avatar" />
+          <div>
+            <p class="testimonial-name">Sofía Martínez</p>
+            <p class="testimonial-role">Clienta Nueva</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BAND ===== -->
+<div class="cta-band">
+  <div class="container">
+    <div class="cta-band-inner reveal">
+      <span class="script-text" style="font-size:1.5rem; display:block; margin-bottom:0.5rem;">¿Lista para transformarte?</span>
+      <h2>Agenda Tu Cita Hoy</h2>
+      <p>Reserva en segundos y recibe confirmación por WhatsApp. Sin esperas, sin complicaciones.</p>
+      <div class="cta-band-btns">
+        <a href="contacto.html" class="btn btn-primary">
+          <i class="fa-solid fa-calendar-check"></i> Agendar Ahora
+        </a>
+        <button onclick="openWhatsApp()" class="btn btn-whatsapp">
+          <i class="fa-brands fa-whatsapp"></i> Escribir por WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <img src="logo.jpeg" alt="Logo" class="footer-logo" />
+          <span class="nav-logo-text">
+            Beauty Salon
+            <span class="nav-logo-sub">Salón de Belleza</span>
+          </span>
+        </div>
+        <p>Tu destino de belleza premium en Honduras. Más de 10 años transformando looks y elevando la confianza de nuestras clientas.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" aria-label="WhatsApp" onclick="openWhatsApp()"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Navegación</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="nosotros.html">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="productos.html">Productos</a></li>
+          <li><a href="galeria.html">Galería</a></li>
+          <li><a href="precios.html">Precios</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contacto</h4>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-location-dot icon"></i>
+          <span>Tegucigalpa, Honduras<br>Col. La Granja, Block 5</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-phone icon"></i>
+          <a href="tel:+50495307141">+504 9530-7141</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-brands fa-whatsapp icon"></i>
+          <a href="https://wa.me/50495307141" target="_blank">WhatsApp directo</a>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fa-solid fa-envelope icon"></i>
+          <a href="mailto:info@beautysalon.hn">info@beautysalon.hn</a>
+        </div>
+      </div>
+
+      <div>
+        <h4>Horarios</h4>
+        <div class="footer-hours-list">
+          <div class="footer-hours-item">
+            <span class="day">Lunes – Viernes</span>
+            <span>8:00 – 19:00</span>
+          </div>
+          <div class="footer-hours-item">
+            <span class="day">Sábado</span>
+            <span>8:00 – 18:00</span>
+          </div>
+          <div class="footer-hours-item">
+            <span class="day">Domingo</span>
+            <span>Cerrado</span>
+          </div>
+        </div>
+        <div style="margin-top:1.5rem;">
+          <a href="contacto.html" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-calendar-check"></i> Agendar Cita
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 Beauty Salon. Todos los derechos reservados.</p>
+      <p>Diseñado con <i class="fa-solid fa-heart" style="color:var(--color-rose-deep)"></i> para ti</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="js/whatsapp.js"></script>
+<script src="js/main.js"></script>
+<script src="js/chatbot.js"></script>
+<script>
+/**
+ * THREE.JS HERO PARTICLES
+ * Floating golden particles for the hero section
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  if (typeof THREE === 'undefined') return;
+
+  const canvas  = document.getElementById('hero-canvas');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene  = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.z = 5;
+
+  // Create golden particles
+  const count = 160;
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(count * 3);
+  const sizes = new Float32Array(count);
+
+  for (let i = 0; i < count; i++) {
+    positions[i * 3]     = (Math.random() - 0.5) * 20;
+    positions[i * 3 + 1] = (Math.random() - 0.5) * 14;
+    positions[i * 3 + 2] = (Math.random() - 0.5) * 8;
+    sizes[i] = Math.random() * 6 + 2;
+  }
+
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+  const material = new THREE.PointsMaterial({
+    color: 0xC9A96E,
+    size: 0.05,
+    transparent: true,
+    opacity: 0.55,
+    sizeAttenuation: true,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+
+  const particles = new THREE.Points(geometry, material);
+  scene.add(particles);
+
+  // Floating geometry
+  const torusGeo = new THREE.TorusGeometry(1.5, 0.04, 12, 80);
+  const torusMat = new THREE.MeshBasicMaterial({ color: 0xC9A96E, transparent: true, opacity: 0.12 });
+  const torus = new THREE.Mesh(torusGeo, torusMat);
+  torus.position.set(3, 0, -2);
+  scene.add(torus);
+
+  const sphereGeo = new THREE.SphereGeometry(0.8, 16, 16);
+  const sphereMat = new THREE.MeshBasicMaterial({ color: 0xF5C6CB, transparent: true, opacity: 0.08, wireframe: true });
+  const sphere = new THREE.Mesh(sphereGeo, sphereMat);
+  sphere.position.set(-3, 1, -1);
+  scene.add(sphere);
+
+  // Mouse parallax
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth  - 0.5) * 0.8;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
+  });
+
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const t = clock.getElapsedTime();
+
+    particles.rotation.y = t * 0.03;
+    particles.rotation.x = t * 0.015;
+
+    torus.rotation.x = t * 0.25;
+    torus.rotation.y = t * 0.15;
+
+    sphere.rotation.y = t * 0.2;
+    sphere.rotation.z = t * 0.1;
+
+    camera.position.x += (mouseX - camera.position.x) * 0.04;
+    camera.position.y += (-mouseY - camera.position.y) * 0.04;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+});
+</script>
+</body>
+</html>
